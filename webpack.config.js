@@ -12,7 +12,7 @@ module.exports = (env, options) => {
     devtool: isProduction ? 'none' : 'source-map',
     watch: !isProduction,
     entry: {
-      index: ['./src/index.jsx', './src/sass/index.scss'],
+      index: ['./src/index.js', './src/sass/index.scss'],
     },
     output: {
       path: path.join(__dirname, '/dist'),
@@ -24,25 +24,7 @@ module.exports = (env, options) => {
         {
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader',
-          },
-        },
-        {
-          enforce: 'pre',
-          test: /\.(js|jsx)$/,
-          exclude: /node_modules/,
-          loader: 'eslint-loader',
-        },
-        {
-          test: /\.(css|scss|sass)$/,
-          use: [
-            MiniCssExtractPlugin.loader,
-            { loader: 'css-loader', options: { url: false, sourceMap: true } },
-            {
-              loader: 'sass-loader',
-            },
-          ],
+          loader: 'babel-loader',
         },
         {
           test: /\.(png|svg|ico|jpe?g|gif)$/,
@@ -57,7 +39,24 @@ module.exports = (env, options) => {
         },
         {
           test: /\.(woff|woff2|eot|ttf|otf)$/,
-          use: 'file-loader',
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[path][name].[ext]',
+              },
+            },
+          ],
+        },
+        {
+          test: /\.(css|scss|sass)$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            { loader: 'css-loader', options: { url: false, sourceMap: true } },
+            {
+              loader: 'sass-loader',
+            },
+          ],
         },
         {
           test: /\.html$/,
@@ -65,12 +64,16 @@ module.exports = (env, options) => {
         },
       ],
     },
+
     resolve: {
       extensions: ['.js', '.jsx'],
     },
+
     devServer: {
       contentBase: './dist',
+      open: true,
     },
+
     plugins: [
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
@@ -79,11 +82,13 @@ module.exports = (env, options) => {
         // favicon: 'src/assets/favicon/favicon.ico',
         chunks: ['index'],
       }),
-      new CopyPlugin([
-        { from: 'src/assets/images', to: 'src/assets/images' },
-        /* { from: 'src/assets/svg', to: 'src/assets/svg' },
-        { from: 'src/assets/fonts', to: 'src/assets/fonts' }, */
-      ]),
+      new CopyPlugin({
+        patterns: [
+          { from: 'src/assets/images', to: 'src/assets/images' },
+          /* { from: 'src/assets/svg', to: 'src/assets/svg' },
+          { from: 'src/assets/fonts', to: 'src/assets/fonts' }, */
+        ],
+      }),
       new MiniCssExtractPlugin({
         filename: './src/css/[name].css',
       }),
