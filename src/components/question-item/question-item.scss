@@ -1,0 +1,31 @@
+.question-link {
+  color: $text-color;
+  text-decoration: none;
+  &:hover {
+      color: $text-color;
+      text-decoration: none;
+  }
+}
+
+.question-list .list-group-item {
+  flex: auto;
+
+  text-align: center;
+
+  background-color: $questionListColor;
+  border: none;
+  border-right: dotted 1px $text-color;
+  transition: all ease-out .3s;
+  &:hover {
+      background-color: $hover-color;
+  }
+}
+
+.question-list .list-group-item:nth-child(1) {
+  border-top-right-radius: initial;
+}
+
+.question-list .list-group-item:last-child {
+  border-bottom-left-radius: initial;
+  border-right: none;
+}

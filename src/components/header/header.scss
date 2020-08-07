@@ -1,0 +1,22 @@
+.logo {
+  width: 200px;
+  height: 55px;
+}
+
+.header {
+  margin-top: 1.2rem;
+  flex-direction: column;
+}
+
+.header-top {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.score-box {
+  font-size: 1.5rem;
+}
+
+.score {
+  margin-left: .5rem;
+}
