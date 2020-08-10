@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 import birdImage from '../../assets/images/bird_example.jpg';
 import BirdFeatures from './bird-features';
@@ -15,7 +15,10 @@ export default class BirdsInfo extends Component {
           />
         </div>
         <span className="bird-description">
-          Ворон – крупная птица. Длина тела достигает 70 сантиметров, размах крыльев – до полутора метров. Вороны населяют окрестности Тауэра. В Англии бытует поверье, что в день, когда черные вороны улетят от Тауэра, монархия рухнет.
+          Ворон – крупная птица.
+          Длина тела достигает 70 сантиметров, размах крыльев – до полутора метров.
+          Вороны населяют окрестности Тауэра. В Англии бытует поверье,
+          что в день, когда черные вороны улетят от Тауэра, монархия рухнет.
         </span>
       </>
     );

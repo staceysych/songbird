@@ -2,6 +2,7 @@
   width: 100%;
   margin: 25px 15px;
 
+  font-family: DreamWood;
   color: #ffffff!important;
 
   background-color: #303030;
@@ -11,6 +12,6 @@
   transition: .3s;
 
   &:hover {
-      background-color: $hover-color;
+    background-color: $hover-color;
   }
 }

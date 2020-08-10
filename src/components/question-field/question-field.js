@@ -12,7 +12,7 @@ export default class QuestionField extends Component {
     return (
       <div className="question-field jumbotron rounded d-flex">
         <BirdImage />
-        <div>
+        <div className="question-box">
           <ul className="list-group list-group-flush">
             <li className="list-group-item">
               <span className="hidden-name">****</span>

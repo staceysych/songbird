@@ -9,13 +9,14 @@ export default class MainField extends Component {
     super();
     this.state = {
       birdsArr: ['Воробей', 'Соловей', 'Ястреб', 'Цапля', 'Снегирь', 'Кукушка'],
-      isGameOn: false,
+      isGameOn: true,
     };
   }
 
   render() {
     const { birdsArr, isGameOn } = this.state;
     const birdCard = isGameOn ? <BirdsInfo /> : <InitialCardText />;
+
     return (
       <div className="row md2">
         <div className="col-md-6">

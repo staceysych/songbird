@@ -1,9 +1,9 @@
 import React from 'react';
 
-import logo from '../../assets/images/logo.svg';
+// import logo from '../../assets/images/logo.svg';
 
 const Logo = () => (
-  <img alt="logo" src={logo} className="logo" />
+  <span className="logo">SongBird</span>
 );
 
 export default Logo;

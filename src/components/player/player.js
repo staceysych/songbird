@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
 
+import play from '../../assets/images/video.png';
+
 export default class Player extends Component {
   render() {
     return (
-      <div className="player-wrapper">
-        {/* <audio src="#" hidden /> */}
+      <>
         <div className="player-controls">
           <div className="play-button">
-            <i className="far fa-play-circle" />
+            <img className="play-icon" alt="play" src={play} />
           </div>
-          <div className="player-timeline" />
+          <div className="player-timeline">
+            <div className="fill" />
+            <div className="handle" />
+          </div>
         </div>
-      </div>
+        <div className="timeline-info">
+          <span>00:00</span>
+          <span>02:00</span>
+        </div>
+      </>
+
     );
   }
 }

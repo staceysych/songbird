@@ -1,11 +1,15 @@
+@import '../../components/fonts/fonts.scss';
+
 .logo {
   width: 200px;
   height: 55px;
+
+  font-family: DreamWood;
 }
 
 .header {
-  margin-top: 1.2rem;
   flex-direction: column;
+  margin-top: 1.2rem;
 }
 
 .header-top {
