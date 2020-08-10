@@ -1,10 +1,17 @@
-@import '../../components/fonts/fonts.scss';
+@import "../../components/fonts/fonts.scss";
 
 .logo {
+  display: flex;
+  align-items: center;
   width: 200px;
   height: 55px;
 
+  font-size: 4rem;
   font-family: DreamWood;
+}
+
+.logo-colored {
+  color: $main-color;
 }
 
 .header {
@@ -19,8 +26,10 @@
 
 .score-box {
   font-size: 1.5rem;
+  font-family: DreamWood;
 }
 
 .score {
   margin-left: .5rem;
+  font-family: Lato;
 }

@@ -14,11 +14,11 @@
   height: 5px;
   margin-left: 1.5rem;
 
-  background-color: white;
+  background-color: $text-color;
   border-radius: 50px;
 }
 
-.fill {
+.player-fill {
   width: 50px;
   height: 5px;
 
@@ -26,13 +26,14 @@
   border-radius: 20px;
 }
 
-.handle {
+.player-handle {
   width: 8px;
   height: 8px;
 
-  background-color: black;
+  background-color: $text-color;
   border-radius: 50%;
   transform: scale(2);
+  cursor: pointer;
 }
 
 .player-controls {

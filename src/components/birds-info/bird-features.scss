@@ -1,8 +1,28 @@
 .bird-features {
-  margin-left: 40px;
   width: 100%;
+  margin-left: 15px;
 }
 
 .bird-features .list-group-item {
   padding: .3rem;
+}
+
+.bird-features .player-controls {
+  margin-top: 10px;
+}
+
+.bird-features .play-button {
+  width: 35px;
+  height: 30px;
+}
+
+.bird-features .player-timeline {
+  margin-left: 10px;
+}
+
+.bird-features .timeline-info {
+  width: 80%;
+  margin-left: 40px;
+
+  font-size: .5rem;
 }

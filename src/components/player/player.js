@@ -11,8 +11,8 @@ export default class Player extends Component {
             <img className="play-icon" alt="play" src={play} />
           </div>
           <div className="player-timeline">
-            <div className="fill" />
-            <div className="handle" />
+            <div className="player-fill" />
+            <div className="player-handle" />
           </div>
         </div>
         <div className="timeline-info">
