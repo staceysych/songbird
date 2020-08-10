@@ -9,8 +9,8 @@ export default class Header extends Component {
     return (
       <div className="header d-flex">
         <div className="header-top d-flex">
-            <Logo />
-            <Score />
+          <Logo />
+          <Score />
         </div>
         <QuestionList />
       </div>

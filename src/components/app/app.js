@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Header from '../header/header';
+import PlayingField from '../playing-field/playing-field';
 
 export default class App extends Component {
   constructor() {
@@ -11,6 +12,7 @@ export default class App extends Component {
     return (
       <div className="container">
         <Header />
+        <PlayingField />
       </div>
     );
   }

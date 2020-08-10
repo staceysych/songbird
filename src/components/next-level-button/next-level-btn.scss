@@ -1,0 +1,16 @@
+.next-level-btn {
+  width: 100%;
+  margin: 25px 15px;
+
+  color: #ffffff!important;
+
+  background-color: #303030;
+  border: 1px solid #444444;
+  cursor: auto;
+
+  transition: .3s;
+
+  &:hover {
+      background-color: $hover-color;
+  }
+}

@@ -85,7 +85,7 @@ module.exports = (env, options) => {
       new CopyPlugin({
         patterns: [
           { from: 'src/assets/images', to: 'src/assets/images' },
-          { from: 'src/assets/svg', to: 'src/assets/svg' },
+          /* { from: 'src/assets/svg', to: 'src/assets/svg' }, */
           /* { from: 'src/assets/fonts', to: 'src/assets/fonts' }, */
         ],
       }),
