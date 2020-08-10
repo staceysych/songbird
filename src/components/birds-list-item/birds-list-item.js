@@ -8,23 +8,22 @@ export default class BirdsListItem extends Component {
     };
   }
 
-  onBirdClick = () => {
+  onBirdClick = ({target}) => {
     this.setState({
       right: true,
     });
+
+    let { id } = target;
+    if (!id.includes('span')) {
+      id = `span-${id}`;
+    }
+    document.getElementById(id).classList.add('correct');
   }
 
   renderItems = (arr) => {
-    const { right } = this.state;
-    let checkerBtnStyle = 'checker-btn';
-
-    if (right) {
-      checkerBtnStyle += ' correct';
-    }
-
     return arr.map((item) => (
-      <li key={item} className="list-group-item" onClick={this.onBirdClick}>
-        <span className={checkerBtnStyle} />
+      <li key={item} id={item} className="list-group-item" onClick={this.onBirdClick}>
+        <span id={`span-${item}`} className="checker-btn" />
         {item}
       </li>
     ));
