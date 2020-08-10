@@ -1,10 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const BirdsListItem = ({ birdsArr }) => birdsArr.map((bird) => (
-  <li key={bird} className="list-group-item">
-    <span className="checker-btn" />
-    {bird}
-  </li>
-));
+export default class BirdsListItem extends Component {
+  constructor() {
+    super();
+    this.state = {
+      right: false,
+    };
+  }
 
-export default BirdsListItem;
+  onBirdClick = () => {
+    this.setState({
+      right: true,
+    });
+  }
+
+  renderItems = (arr) => {
+    const { right } = this.state;
+    let checkerBtnStyle = 'checker-btn';
+
+    if (right) {
+      checkerBtnStyle += ' correct';
+    }
+
+    return arr.map((item) => (
+      <li key={item} className="list-group-item" onClick={this.onBirdClick}>
+        <span className={checkerBtnStyle} />
+        {item}
+      </li>
+    ));
+  }
+
+  render() {
+    const { birdsArr } = this.props;
+    const items = this.renderItems(birdsArr);
+
+    return (
+      <>
+        { items }
+      </>
+    );
+  }
+}
