@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import PropTypes from 'prop-types';
+
 export default class SpellListItem extends Component {
   constructor() {
     super();
@@ -20,16 +22,16 @@ export default class SpellListItem extends Component {
     document.getElementById(id).classList.add('correct');
   }
 
-  renderItems = (arr) => arr.map((item) => (
-    <li key={item} id={item} className="list-group-item" onClick={this.onBirdClick}>
-      <span id={`span-${item}`} className="checker-btn" />
-      {item}
+  renderItems = (arr) => arr.map(({ short_description }) => (
+    <li key={short_description} id={short_description} className="list-group-item" onClick={this.onBirdClick}>
+      <span id={`span-${short_description}`} className="checker-btn" />
+      {short_description}
     </li>
   ))
 
   render() {
-    const { birdsArr } = this.props;
-    const items = this.renderItems(birdsArr);
+    const { warmUpArr } = this.props;
+    const items = this.renderItems(warmUpArr);
 
     return (
       <>
@@ -38,3 +40,8 @@ export default class SpellListItem extends Component {
     );
   }
 }
+
+SpellListItem.propTypes = {
+  warmUpArr: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+

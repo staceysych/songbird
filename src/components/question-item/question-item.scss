@@ -29,3 +29,7 @@
   border-bottom-left-radius: initial;
   border-right: none;
 }
+
+.question-list .active {
+  background-color: $active-color;
+}

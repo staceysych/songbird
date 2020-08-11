@@ -2,8 +2,8 @@ import React from 'react';
 
 const InitialCardText = () => (
   <span className="card-text">
-    Послушайте плеер.
-    Выберите птицу из списка
+    Послушайте заклинание.
+    Выберите из списка, что делает это заклинание.
   </span>
 );
 

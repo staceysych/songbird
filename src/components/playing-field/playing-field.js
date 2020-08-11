@@ -1,4 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import QuestionField from '../question-field/question-field';
 import MainField from '../main-field/main-field';
 
@@ -8,11 +10,17 @@ export default class PlayingField extends Component {
   }
 
   render() {
+    const { data } = this.props;
+    console.log(data);
     return (
       <>
         <QuestionField />
-        <MainField />
+        <MainField spellData={data} />
       </>
     );
   }
 }
+
+PlayingField.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.array).isRequired,
+};
