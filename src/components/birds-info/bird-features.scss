@@ -12,8 +12,8 @@
 }
 
 .bird-features .play-button {
-  width: 35px;
-  height: 30px;
+  width: 30px;
+  height: 25px;
 }
 
 .bird-features .player-timeline {
@@ -21,8 +21,13 @@
 }
 
 .bird-features .timeline-info {
-  width: 80%;
+  width: 60%;
   margin-left: 40px;
 
   font-size: .5rem;
+}
+
+.bird-features .player-volume {
+  width: 30px;
+  height: 25px;
 }

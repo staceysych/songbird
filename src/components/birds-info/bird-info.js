@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import birdImage from '../../assets/images/bird_example.jpg';
 import BirdFeatures from './bird-features';
+// import spellsData from '../../data/data';
 
 export default class BirdsInfo extends Component {
   render() {

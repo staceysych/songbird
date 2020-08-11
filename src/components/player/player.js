@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import playImage from '../../assets/images/video.png';
 import pauseImage from '../../assets/images/pause.png';
+import volumeImage from '../../assets/images/volume.png';
 
 export default class Player extends Component {
   constructor() {
@@ -14,6 +15,10 @@ export default class Player extends Component {
 
   changeIconState = () => {
     this.setState((state) => ({ pause: !state.pause, play: !state.play }));
+  }
+
+  onVolumeClick = () => {
+    console.log('Volume');
   }
 
   render() {
@@ -35,6 +40,14 @@ export default class Player extends Component {
           <div className="player-timeline">
             <div className="player-fill" />
             <div className="player-handle" />
+          </div>
+          <div className="player-volume">
+            <img
+              alt="volume"
+              className="volume-icon"
+              src={volumeImage}
+              onClick={this.onVolumeClick}
+            />
           </div>
         </div>
         <div className="timeline-info">

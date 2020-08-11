@@ -8,7 +8,7 @@ export default class BirdsListItem extends Component {
     };
   }
 
-  onBirdClick = ({target}) => {
+  onBirdClick = ({ target }) => {
     this.setState({
       right: true,
     });
@@ -20,14 +20,12 @@ export default class BirdsListItem extends Component {
     document.getElementById(id).classList.add('correct');
   }
 
-  renderItems = (arr) => {
-    return arr.map((item) => (
-      <li key={item} id={item} className="list-group-item" onClick={this.onBirdClick}>
-        <span id={`span-${item}`} className="checker-btn" />
-        {item}
-      </li>
-    ));
-  }
+  renderItems = (arr) => arr.map((item) => (
+    <li key={item} id={item} className="list-group-item" onClick={this.onBirdClick}>
+      <span id={`span-${item}`} className="checker-btn" />
+      {item}
+    </li>
+  ))
 
   render() {
     const { birdsArr } = this.props;
