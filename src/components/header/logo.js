@@ -4,8 +4,8 @@ import React from 'react';
 
 const Logo = () => (
   <span className="logo">
-    Song
-    <span className="logo-colored">Bird</span>
+    Spell
+    <span className="logo-colored">Sound</span>
   </span>
 );
 

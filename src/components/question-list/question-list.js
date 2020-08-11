@@ -5,7 +5,7 @@ import QuestionItem from '../question-item/question-item';
 export default class QuestionList extends Component {
   constructor() {
     super();
-    this.questionArr = ['Разминка', 'Воробьиные', 'Лесные птицы', 'Певчие птицы', 'Хищные птицы', 'Морские птицы'];
+    this.questionArr = ['Разминка', 'A-spells', 'B - C', 'D - I', 'L - P', 'P - W'];
   }
 
   render() {
