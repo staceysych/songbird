@@ -2,7 +2,7 @@ import React from 'react';
 
 import Player from '../player/player';
 
-const BirdFeatures = ({ birdName, latinName }) => (
+const SpellFeatures = ({ birdName, latinName }) => (
   <ul className="bird-features list-group list-group-flush">
     <li className="list-group-item"><h4>{birdName}</h4></li>
     <li className="list-group-item"><h5>{latinName}</h5></li>
@@ -12,4 +12,4 @@ const BirdFeatures = ({ birdName, latinName }) => (
   </ul>
 );
 
-export default BirdFeatures;
+export default SpellFeatures;

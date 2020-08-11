@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 
-import birdImage from '../../assets/images/bird_example.jpg';
-import BirdFeatures from './bird-features';
+import SpellFeatures from './spell-features';
+import Poster from '../poster/poster';
 // import spellsData from '../../data/data';
 
-export default class BirdsInfo extends Component {
+export default class SpellInfo extends Component {
   render() {
     return (
       <>
         <div className="card-body d-flex">
-          <img src={birdImage} alt="bird" className="bird-image" />
-          <BirdFeatures
+          <Poster />
+          <SpellFeatures
             birdName="Ворон"
             latinName="Corvus corax"
           />

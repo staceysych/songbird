@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class BirdsListItem extends Component {
+export default class SpellListItem extends Component {
   constructor() {
     super();
     this.state = {

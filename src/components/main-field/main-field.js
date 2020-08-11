@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import BirdsListItem from '../birds-list-item/birds-list-item';
-import BirdsInfo from '../birds-info/bird-info';
+import SpellListItem from '../spell-list-item/spell-list-item';
+import SpellInfo from '../spell-info/spell-info';
 import NextLevelBtn from '../next-level-button/next-level-btn';
 import InitialCardText from '../initial-card-text/initial-card-text';
 
@@ -15,13 +15,13 @@ export default class MainField extends Component {
 
   render() {
     const { birdsArr, isGameOn } = this.state;
-    const birdCard = isGameOn ? <BirdsInfo /> : <InitialCardText />;
+    const birdCard = isGameOn ? <SpellInfo /> : <InitialCardText />;
 
     return (
       <div className="row md2">
         <div className="col-md-6">
           <ul className="birds-list list-group">
-            <BirdsListItem birdsArr={birdsArr} />
+            <SpellListItem birdsArr={birdsArr} />
           </ul>
         </div>
         <div className="col-md-6">
