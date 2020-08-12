@@ -5,22 +5,19 @@ import QuestionField from '../question-field/question-field';
 import MainField from '../main-field/main-field';
 
 export default class PlayingField extends Component {
-  constructor() {
-    super();
-  }
-
   render() {
-    const { data } = this.props;
-    console.log(data);
+    const { warmUp, curSpell } = this.props;
+
     return (
       <>
-        <QuestionField />
-        <MainField spellData={data} />
+        <QuestionField curSpell={curSpell} />
+        <MainField warmUpData={warmUp} />
       </>
     );
   }
 }
 
 PlayingField.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.array).isRequired,
+  warmUp: PropTypes.arrayOf(PropTypes.object).isRequired,
+  curSpell: PropTypes.object.isRequired,
 };
