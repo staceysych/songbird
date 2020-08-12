@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import playImage from '../../assets/images/video.png';
 import pauseImage from '../../assets/images/pause.png';
@@ -10,7 +11,13 @@ export default class Player extends Component {
     this.state = {
       pause: true,
       play: false,
+      audioUrl: '',
     };
+  }
+
+  getCurrAudio = (obj) => {
+    const { audio } = obj;
+    return audio;
   }
 
   changeIconState = () => {
@@ -23,6 +30,7 @@ export default class Player extends Component {
 
   render() {
     const { pause, play } = this.state;
+
     const playIcon = pause
       ? <img className="play-icon" alt="play" src={playImage} onClick={this.changeIconState} />
       : null;
@@ -58,3 +66,8 @@ export default class Player extends Component {
     );
   }
 }
+
+/* Player.propTypes = {
+  curSpell: PropTypes.object.isRequired,
+};
+ */

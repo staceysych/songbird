@@ -15,7 +15,6 @@ export default class QuestionField extends Component {
   render() {
     const { curSpell } = this.props;
     const hiddenDescription = this.generateHiddenDescription(curSpell);
-    console.log(hiddenDescription);
 
     return (
       <div className="question-field jumbotron rounded d-flex">
@@ -26,7 +25,7 @@ export default class QuestionField extends Component {
               <span className="hidden-name">{hiddenDescription}</span>
             </li>
             <li className="list-group-item">
-              <Player />
+              <Player curSpell={curSpell} />
             </li>
           </ul>
         </div>
