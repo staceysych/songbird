@@ -44,4 +44,3 @@ export default class SpellListItem extends Component {
 SpellListItem.propTypes = {
   warmUpArr: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
-

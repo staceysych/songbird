@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import QuestionItem from '../question-item/question-item';
 
 export default class QuestionList extends Component {
   constructor() {
     super();
-    this.questionArr = ['Разминка', 'A-spells', 'B - C', 'D - I', 'L - P', 'P - W'];
   }
 
   render() {
+    const { filter } = this.props;
+
     return (
       <ul className="question-list d-flex">
-        <QuestionItem questionArr={this.questionArr} />
+        <QuestionItem filter={filter} />
       </ul>
     );
   }
 }
+
+QuestionList.propTypes = {
+  filter: PropTypes.string.isRequired,
+};

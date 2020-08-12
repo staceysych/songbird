@@ -9,15 +9,18 @@ export default class App extends Component {
     super();
     this.state = {
       data: spellData,
+      filter: 'warm-up',
     };
   }
 
   render() {
-    const { data } = this.state;
+    const { data, filter } = this.state;
 
     return (
       <div className="container">
-        <Header />
+        <Header
+          filter={filter}
+        />
         <PlayingField
           data={data}
         />

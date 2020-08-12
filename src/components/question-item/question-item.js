@@ -1,29 +1,38 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-export default class QuestionItem  extends Component {
-    constructor() {
-        super();
-        this.state = {
-            active: 1,
-            id: 0,
-        }
-    }
+export default class QuestionItem extends Component {
+  constructor() {
+    super();
+    this.questionArr = [
+      { name: 'warm-up', label: 'Разминка' },
+      { name: 'A', label: 'A-spells' },
+      { name: 'B-C', label: 'B - C' },
+      { name: 'D-I', label: 'D - I' },
+      { name: 'L-P', label: 'L - P' },
+      { name: 'P-W', label: 'P - W' },
+    ];
+  }
 
-    /* generateId = () => {
-        this.setState((state) => {
-            let { id } = state;
-            id = id++;
-            return id;
-        });
-    } */
+  render() {
+    const { filter } = this.props;
+    const questions = this.questionArr.map(({ name, label }) => {
+      const isActive = filter === name;
+      const listClass = isActive ? 'list-group-item active' : 'list-group-item';
 
-    render() {
-        const { questionArr } = this.props;
-        
+      return (
+        <li key={name} className={listClass}><a className="question-link" href="#">{label}</a></li>
+      );
+    });
 
-        return questionArr.map((el) => {
-
-            return (<li key={el} className="list-group-item"><a className="question-link" href="#">{el}</a></li>)
-        });
-    }
+    return (
+      <>
+        {questions}
+      </>
+    );
+  }
 }
+
+QuestionItem.propTypes = {
+  filter: PropTypes.string.isRequired,
+};
