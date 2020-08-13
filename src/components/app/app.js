@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 
 import Header from '../header/header';
-import PlayingField from '../playing-field/playing-field';
 import spellData from '../../data/data';
 import randomInteger from '../../utils/random-integer';
 import shuffleArray from '../../utils/shuffle-array';
 import Loader from '../loader/loader';
+import QuestionField from '../question-field/question-field';
+import MainField from '../main-field/main-field';
 
 export default class App extends Component {
   constructor() {
@@ -56,9 +57,8 @@ export default class App extends Component {
         {loader}
         <div className="container">
           <Header filter={filter} />
-          {!loading && (
-            <PlayingField warmUp={warmUpArr} curSpell={currentSpell} />
-          )}
+          {Object.keys(currentSpell).length && <QuestionField currentSpell={currentSpell} />}
+          {warmUpArr.length && <MainField warmUpData={warmUpArr} />}
         </div>
       </>
     );

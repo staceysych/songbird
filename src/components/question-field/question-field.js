@@ -3,20 +3,41 @@ import PropTypes from 'prop-types';
 
 import Player from '../player/player';
 import Poster from '../poster/poster';
+import Loader from '../loader/loader';
 
 export default class QuestionField extends Component {
-  generateHiddenDescription = (obj) => {
-    const { short_description } = obj;
+  constructor() {
+    super();
+    this.state = {
+      isLoading: true,
+    };
 
-    const strLength = short_description.length;
+    setTimeout(() => { this.changeLoading(); }, 1000);
+  }
+
+  changeLoading = () => {
+    this.setState({
+      isLoading: false,
+    });
+  }
+
+  generateHiddenDescription = (obj) => {
+    const { shortDescription } = obj;
+
+    const strLength = shortDescription.length;
     return Array(strLength).fill('*').join('');
   };
 
   render() {
-    const { curSpell } = this.props;
-    //const audioUrl = curSpell.audio;
-    const audioUrl = curSpell.audio;
-    const hiddenDescription = this.generateHiddenDescription(curSpell);
+    const { currentSpell } = this.props;
+    const { isLoading } = this.state;
+    const audioUrl = currentSpell.audio;
+    console.log('playing field spell:', currentSpell);
+    console.log('playing field audio:', audioUrl);
+    const hiddenDescription = this.generateHiddenDescription(currentSpell);
+
+    const spinner = isLoading ? <Loader /> : null;
+    const player = !isLoading ? <Player audioUrl={audioUrl} /> : null;
 
     return (
       <div className="question-field jumbotron rounded d-flex">
@@ -27,7 +48,8 @@ export default class QuestionField extends Component {
               <span className="hidden-name">{hiddenDescription}</span>
             </li>
             <li className="list-group-item">
-              <Player audioUrl={audioUrl} />
+              {spinner}
+              {player}
             </li>
           </ul>
         </div>
@@ -37,5 +59,14 @@ export default class QuestionField extends Component {
 }
 
 QuestionField.propTypes = {
-  curSpell: PropTypes.object.isRequired,
+  currentSpell: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    pronunciation: PropTypes.string,
+    shortDescription: PropTypes.string,
+    descriptionRu: PropTypes.string,
+    descriptionEng: PropTypes.string,
+    image: PropTypes.string,
+    audio: PropTypes.string,
+  }).isRequired,
 };

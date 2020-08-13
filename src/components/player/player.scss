@@ -21,7 +21,7 @@
 }
 
 .player-fill {
-  width: 50px;
+  width: 0;
   height: 5px;
 
   background-color: $hover-color;
@@ -34,20 +34,33 @@
 
   background-color: $text-color;
   border-radius: 50%;
+  box-shadow: 1px 0 3px 0 $shadow-color;
   transform: scale(2);
   cursor: pointer;
+
+  pointer-events: all;
+}
+
+.volume-handle {
+  position: absolute;
+  top: 0;
+
+  border-radius: 8px;
+  box-shadow: 0 1px 1px 0 $shadow-color;
+  transform: scale(1.5);
 }
 
 .player-controls {
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .timeline-info {
   display: flex;
   justify-content: space-between;
   width: 83%;
-  margin-left: 65px;
+  margin-left: 30px;
 
   font-size: .8rem;
 }
@@ -59,6 +72,66 @@
 }
 
 .volume-icon {
-  cursor: pointer;
   width: 100%;
+
+  cursor: pointer;
+}
+
+.volume-controls {
+  position: absolute;
+  right: -9px;
+  bottom: 40px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20px;
+  height: 96px;
+
+  background-color: $main-color;
+  border-radius: 7px;
+  &.hidden {
+    display: none;
+  }
+  .slider {
+    position: relative;
+
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    width: 6px;
+    margin-top: 45%;
+    margin-bottom: 45%;
+
+    background-color: $text-color;
+    border-radius: 3px;
+    cursor: pointer;
+    .progress {
+      bottom: 0;
+
+      display: flex;
+      justify-content: center;
+      width: 6px;
+      height: 100%;
+
+      background-color: #44bfa3;
+      border-radius: inherit;
+
+      pointer-events: none;
+      .pin {
+        position: absolute;
+        top: -8px;
+        left: -5px;
+
+        width: 16px;
+        height: 16px;
+
+        background-color: #44bfa3;
+        border-radius: 8px;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .32);
+
+        pointer-events: all;
+      }
+    }
+  }
 }

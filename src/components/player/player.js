@@ -1,73 +1,166 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-import playImage from '../../assets/images/video.png';
-import pauseImage from '../../assets/images/pause.png';
-import volumeImage from '../../assets/images/volume.png';
+import playImage from "../../assets/images/video.png";
+import pauseImage from "../../assets/images/pause.png";
+import volumeImage from "../../assets/images/volume.png";
+import Loader from "../loader/loader";
 
 export default class Player extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pause: true,
-      play: false,
+      isPlaying: false,
+      audio: new Audio(props.audioUrl),
+      currentTime: "00:00",
+      duration: "",
+      isLoading: true,
+      muted: false,
     };
   }
 
-  changeIconState = () => {
-    this.setState((state) => ({ pause: !state.pause, play: !state.play }));
+  componentDidMount() {
+    this.onTimeUpdate();
+    this.getDuration();
+  }
+
+  changeLoading = () => {
+    this.setState({
+      isLoading: false,
+    });
+  };
+
+  onPlayClick = () => {
+    this.changeIcon();
+    this.playAudio();
+  };
+
+  playAudio = () => {
+    const { audio } = this.state;
+    audio.play();
+  };
+
+  onAudioFinish = () => {
+    const { audio } = this.state;
+    if (audio.ended) {
+      this.setState({
+        isPlaying: false,
+      });
+    }
+  };
+
+  onTimeUpdate = () => {
+    const { audio } = this.state;
+    audio.addEventListener("timeupdate", () => {
+      this.updatePosition(audio);
+      this.updateCurrentTime(audio);
+      this.onAudioFinish();
+    });
+  };
+
+  updateCurrentTime = (audio) => {
+    this.setState({
+      currentTime: `00:0${Math.round(audio.currentTime)}`,
+    });
+  };
+
+  updatePosition = (audio) => {
+    const fillBar = document.querySelector(".player-fill");
+    const position = audio.currentTime / audio.duration;
+
+    fillBar.style.width = `${position * 100}%`;
+  };
+
+  getDuration = () => {
+    const { audio } = this.state;
+    if (audio.duration) {
+      this.changeLoading();
+      this.setState({
+        duration: `00:0${Math.round(audio.duration)}`,
+      });
+    } else {
+      setTimeout(() => {
+        this.getDuration();
+      }, 300);
+    }
+  };
+
+  setMediumVolume = () => {};
+
+  changeIcon = () => {
+    this.setState(({ isPlaying }) => ({
+      isPlaying: !isPlaying,
+    }));
   };
 
   onVolumeClick = () => {
-    console.log('Volume');
-  };
+    const volumeControls = document.querySelector('.volume-controls');
+    volumeControls.classList.toggle('hidden');
+  }
+
+  changeSliderVolume = (event) => {
+    console.log('mouseDown', event.clientX);
+  }
+
+  onMouseMove(event){
+    console.log(event.clientX)
+  }
 
   render() {
-    const { pause, play } = this.state;
-    const { audioUrl } = this.props;
-    console.log(audioUrl);
+    const { isPlaying, currentTime, duration, isLoading } = this.state;
+    const spinner = isLoading ? <Loader /> : null;
+    const timeline = isLoading ? null : (
+      <div className="timeline-info">
+        <span>{currentTime.replace(/\./, ":")}</span>
+        <span>{duration}</span>
+      </div>
+    );
 
-    const playIcon = pause ? (
-      <img
-        className="play-icon"
-        alt="play"
-        src={playImage}
-        onClick={this.changeIconState}
-      />
-    ) : null;
-    const pauseIcon = play ? (
+    const volume = (
+      <div className="player-volume">
+        <img alt="volume" className="volume-icon" src={volumeImage} onClick={this.onVolumeClick} />
+        <div className="volume-controls hidden">
+          <div className="slider" onMouseDown={this.changeSliderVolume} >
+            <div className="progress">
+              <div className="player-handle volume-handle" />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+
+    const icon = isPlaying ? (
       <img
         className="play-icon"
         alt="play"
         src={pauseImage}
-        onClick={this.changeIconState}
+        onClick={this.changeIcon}
       />
-    ) : null;
+    ) : (
+      <img
+        className="play-icon"
+        alt="play"
+        src={playImage}
+        onClick={this.onPlayClick}
+      />
+    );
+
+    const controls = isLoading ? null : (
+      <div className="player-controls">
+        <div className="play-button">{icon}</div>
+        <div className="player-timeline">
+          <div className="player-fill" />
+          <div className="player-handle" />
+        </div>
+        {volume}
+      </div>
+    );
 
     return (
       <>
-        <div className="player-controls">
-          <div className="play-button">
-            {playIcon}
-            {pauseIcon}
-          </div>
-          <div className="player-timeline">
-            <div className="player-fill" />
-            <div className="player-handle" />
-          </div>
-          <div className="player-volume">
-            <img
-              alt="volume"
-              className="volume-icon"
-              src={volumeImage}
-              onClick={this.onVolumeClick}
-            />
-          </div>
-        </div>
-        <div className="timeline-info">
-          <span>00:00</span>
-          <span>02:00</span>
-        </div>
+        {spinner}
+        {controls}
+        {timeline}
       </>
     );
   }

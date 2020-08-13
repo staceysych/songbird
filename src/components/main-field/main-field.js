@@ -10,7 +10,7 @@ export default class MainField extends Component {
   constructor() {
     super();
     this.state = {
-      isGameOn: true,
+      isGameOn: false,
     };
   }
 
