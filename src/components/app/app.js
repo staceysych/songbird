@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import Header from "../header/header";
-import PlayingField from "../playing-field/playing-field";
-import spellData from "../../data/data";
-import randomInteger from "../../utils/random-integer";
-import shuffleArray from "../../utils/shuffle-array";
-import Loader from "../loader/loader";
+import Header from '../header/header';
+import PlayingField from '../playing-field/playing-field';
+import spellData from '../../data/data';
+import randomInteger from '../../utils/random-integer';
+import shuffleArray from '../../utils/shuffle-array';
+import Loader from '../loader/loader';
 
 export default class App extends Component {
   constructor() {
@@ -13,7 +13,7 @@ export default class App extends Component {
     this.state = {
       loading: true,
       data: spellData,
-      filter: "warm-up",
+      filter: 'warm-up',
       warmUpArr: [],
       currentSpell: {},
     };
@@ -44,10 +44,12 @@ export default class App extends Component {
   };
 
   render() {
-    const { warmUpArr, filter, currentSpell, loading } = this.state;
+    const {
+      warmUpArr, filter, currentSpell, loading,
+    } = this.state;
     const loader = loading ? <Loader /> : null;
-    console.log("current spell", currentSpell);
-    console.log("warm-up", warmUpArr);
+    console.log('current spell', currentSpell);
+    console.log('warm-up', warmUpArr);
 
     return (
       <>

@@ -31,7 +31,6 @@ export default class SpellListItem extends Component {
 
   render() {
     const { warmUpArr } = this.props;
-    console.log('spell list items', warmUpArr);
     const items = this.renderItems(warmUpArr);
 
     return (

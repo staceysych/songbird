@@ -6,37 +6,43 @@ import pauseImage from '../../assets/images/pause.png';
 import volumeImage from '../../assets/images/volume.png';
 
 export default class Player extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       pause: true,
       play: false,
-      audioUrl: '',
     };
-  }
-
-  getCurrAudio = (obj) => {
-    const { audio } = obj;
-    return audio;
   }
 
   changeIconState = () => {
     this.setState((state) => ({ pause: !state.pause, play: !state.play }));
-  }
+  };
 
   onVolumeClick = () => {
     console.log('Volume');
-  }
+  };
 
   render() {
     const { pause, play } = this.state;
+    const { audioUrl } = this.props;
+    console.log(audioUrl);
 
-    const playIcon = pause
-      ? <img className="play-icon" alt="play" src={playImage} onClick={this.changeIconState} />
-      : null;
-    const pauseIcon = play
-      ? <img className="play-icon" alt="play" src={pauseImage} onClick={this.changeIconState} />
-      : null;
+    const playIcon = pause ? (
+      <img
+        className="play-icon"
+        alt="play"
+        src={playImage}
+        onClick={this.changeIconState}
+      />
+    ) : null;
+    const pauseIcon = play ? (
+      <img
+        className="play-icon"
+        alt="play"
+        src={pauseImage}
+        onClick={this.changeIconState}
+      />
+    ) : null;
 
     return (
       <>
@@ -67,7 +73,6 @@ export default class Player extends Component {
   }
 }
 
-/* Player.propTypes = {
-  curSpell: PropTypes.object.isRequired,
+Player.propTypes = {
+  audioUrl: PropTypes.string.isRequired,
 };
- */

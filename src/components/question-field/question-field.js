@@ -10,10 +10,12 @@ export default class QuestionField extends Component {
 
     const strLength = short_description.length;
     return Array(strLength).fill('*').join('');
-  }
+  };
 
   render() {
     const { curSpell } = this.props;
+    //const audioUrl = curSpell.audio;
+    const audioUrl = curSpell.audio;
     const hiddenDescription = this.generateHiddenDescription(curSpell);
 
     return (
@@ -25,7 +27,7 @@ export default class QuestionField extends Component {
               <span className="hidden-name">{hiddenDescription}</span>
             </li>
             <li className="list-group-item">
-              <Player curSpell={curSpell} />
+              <Player audioUrl={audioUrl} />
             </li>
           </ul>
         </div>
