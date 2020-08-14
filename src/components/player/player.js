@@ -57,6 +57,7 @@ export default class Player extends Component {
 
       this.setState({
         isPlaying: false,
+        currentTime: '00:00.00',
       });
     }
   };
@@ -117,7 +118,7 @@ export default class Player extends Component {
     const spinner = isLoading ? <Loader /> : null;
     const time = isLoading ? null : (
       <div className="timeline-info">
-        <span>{currentTime.replace(/\./, ':')}</span>
+        <span>{currentTime}</span>
         <span>{duration}</span>
       </div>
     );
