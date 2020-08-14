@@ -13,7 +13,7 @@ export default class Player extends Component {
     this.state = {
       isPlaying: false,
       audio: new Audio(props.audioUrl),
-      currentTime: '00:00',
+      currentTime: '00:00.00',
       duration: '',
       isLoading: true,
       muted: false,
@@ -61,9 +61,16 @@ export default class Player extends Component {
 
   updateCurrentTime = (audio) => {
     this.setState({
-      currentTime: `00:0${Math.round(audio.currentTime)}`,
+      currentTime: `00:0${(audio.currentTime).toFixed(2)}`,
     });
   };
+
+  calculateCurrentTimeOnDrag = (position) => {
+    const { audio } = this.state;
+    const currentTimeOnPosition = (audio.duration * position) / 100;
+    audio.currentTime = currentTimeOnPosition;
+    this.updateCurrentTime(audio);
+  }
 
   updatePosition = (audio) => {
     const fillBar = document.querySelector('.player-fill');
@@ -77,7 +84,7 @@ export default class Player extends Component {
     if (audio.duration) {
       this.changeLoading();
       this.setState({
-        duration: `00:0${Math.round(audio.duration)}`,
+        duration: `00:0${(audio.duration).toFixed(2)}`,
       });
     } else {
       setTimeout(() => {
@@ -91,6 +98,10 @@ export default class Player extends Component {
       isPlaying: !isPlaying,
     }));
   };
+
+  changeCurrentTime() {
+    console.log('change current time');
+  }
 
   render() {
     const {
@@ -123,7 +134,7 @@ export default class Player extends Component {
     const controls = isLoading ? null : (
       <div className="player-controls">
         <div className="play-button">{icon}</div>
-        <Timeline />
+        <Timeline calculateCurrentTimeOnDrag={this.calculateCurrentTimeOnDrag} />
         <Volume audio={audio} />
       </div>
     );
