@@ -1,10 +1,11 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import playImage from "../../assets/images/video.png";
-import pauseImage from "../../assets/images/pause.png";
-import volumeImage from "../../assets/images/volume.png";
-import Loader from "../loader/loader";
+import playImage from '../../assets/images/video.png';
+import pauseImage from '../../assets/images/pause.png';
+import Loader from '../loader/loader';
+import Volume from './volume';
+import Timeline from './time-line';
 
 export default class Player extends Component {
   constructor(props) {
@@ -12,8 +13,8 @@ export default class Player extends Component {
     this.state = {
       isPlaying: false,
       audio: new Audio(props.audioUrl),
-      currentTime: "00:00",
-      duration: "",
+      currentTime: '00:00',
+      duration: '',
       isLoading: true,
       muted: false,
     };
@@ -51,7 +52,7 @@ export default class Player extends Component {
 
   onTimeUpdate = () => {
     const { audio } = this.state;
-    audio.addEventListener("timeupdate", () => {
+    audio.addEventListener('timeupdate', () => {
       this.updatePosition(audio);
       this.updateCurrentTime(audio);
       this.onAudioFinish();
@@ -65,7 +66,7 @@ export default class Player extends Component {
   };
 
   updatePosition = (audio) => {
-    const fillBar = document.querySelector(".player-fill");
+    const fillBar = document.querySelector('.player-fill');
     const position = audio.currentTime / audio.duration;
 
     fillBar.style.width = `${position * 100}%`;
@@ -85,47 +86,21 @@ export default class Player extends Component {
     }
   };
 
-  setMediumVolume = () => {};
-
   changeIcon = () => {
     this.setState(({ isPlaying }) => ({
       isPlaying: !isPlaying,
     }));
   };
 
-  onVolumeClick = () => {
-    const volumeControls = document.querySelector('.volume-controls');
-    volumeControls.classList.toggle('hidden');
-  }
-
-  changeSliderVolume = (event) => {
-    console.log('mouseDown', event.clientX);
-  }
-
-  onMouseMove(event){
-    console.log(event.clientX)
-  }
-
   render() {
-    const { isPlaying, currentTime, duration, isLoading } = this.state;
+    const {
+      isPlaying, currentTime, duration, isLoading,
+    } = this.state;
     const spinner = isLoading ? <Loader /> : null;
-    const timeline = isLoading ? null : (
+    const time = isLoading ? null : (
       <div className="timeline-info">
-        <span>{currentTime.replace(/\./, ":")}</span>
+        <span>{currentTime.replace(/\./, ':')}</span>
         <span>{duration}</span>
-      </div>
-    );
-
-    const volume = (
-      <div className="player-volume">
-        <img alt="volume" className="volume-icon" src={volumeImage} onClick={this.onVolumeClick} />
-        <div className="volume-controls hidden">
-          <div className="slider" onMouseDown={this.changeSliderVolume} >
-            <div className="progress">
-              <div className="player-handle volume-handle" />
-            </div>
-          </div>
-        </div>
       </div>
     );
 
@@ -148,11 +123,8 @@ export default class Player extends Component {
     const controls = isLoading ? null : (
       <div className="player-controls">
         <div className="play-button">{icon}</div>
-        <div className="player-timeline">
-          <div className="player-fill" />
-          <div className="player-handle" />
-        </div>
-        {volume}
+        <Timeline />
+        <Volume />
       </div>
     );
 
@@ -160,7 +132,7 @@ export default class Player extends Component {
       <>
         {spinner}
         {controls}
-        {timeline}
+        {time}
       </>
     );
   }
