@@ -35,7 +35,7 @@ class Timeline extends Component {
 
       render() {
         return (
-          <div className="player-timeline" onMouseDown={this.onMouseDown}>
+          <div role="button" tabIndex={0} className="player-timeline" onMouseDown={this.onMouseDown}>
             <div className="player-fill" />
             <div className="player-handle" />
           </div>

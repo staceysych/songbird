@@ -16,7 +16,6 @@ export default class Player extends Component {
       currentTime: '00:00.00',
       duration: '',
       isLoading: true,
-      muted: false,
     };
   }
 
@@ -36,14 +35,26 @@ export default class Player extends Component {
     this.playAudio();
   };
 
+  onPauseClick = () => {
+    this.changeIcon();
+    this.pauseAudio();
+  }
+
   playAudio = () => {
     const { audio } = this.state;
     audio.play();
   };
 
-  onAudioFinish = () => {
+  pauseAudio = () => {
     const { audio } = this.state;
+    audio.pause();
+  }
+
+  onAudioFinish = (audio) => {
     if (audio.ended) {
+      const fill = document.querySelector('.player-fill');
+      fill.style.width = '0';
+
       this.setState({
         isPlaying: false,
       });
@@ -55,7 +66,7 @@ export default class Player extends Component {
     audio.addEventListener('timeupdate', () => {
       this.updatePosition(audio);
       this.updateCurrentTime(audio);
-      this.onAudioFinish();
+      this.onAudioFinish(audio);
     });
   };
 
@@ -99,10 +110,6 @@ export default class Player extends Component {
     }));
   };
 
-  changeCurrentTime() {
-    console.log('change current time');
-  }
-
   render() {
     const {
       isPlaying, currentTime, duration, isLoading, audio,
@@ -120,7 +127,7 @@ export default class Player extends Component {
         className="play-icon"
         alt="play"
         src={pauseImage}
-        onClick={this.changeIcon}
+        onClick={this.onPauseClick}
       />
     ) : (
       <img

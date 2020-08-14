@@ -59,7 +59,7 @@ class Volume extends Component {
           onClick={this.onVolumeClick}
         />
         <div className="volume-controls hidden">
-          <div className="slider" onMouseDown={this.onMouseDown}>
+          <div role="button" tabIndex={0} className="slider" onMouseDown={this.onMouseDown}>
             <div className="progress" />
             <div className="player-handle volume-handle" />
           </div>
