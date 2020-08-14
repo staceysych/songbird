@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import volumeImage from '../../assets/images/volume.png';
+import {
+  PERCENT_COEFFICIENT,
+  NOT_FULL_TOP,
+} from '../../utils/constants';
 
 class Volume extends Component {
   onVolumeClick = () => {
@@ -12,23 +16,23 @@ class Volume extends Component {
   calculateVolumePercent = (position) => {
     const slider = document.querySelector('.slider');
     const { top, height } = slider.getBoundingClientRect();
-    let volumePercentage = Math.round(100 * (1 - (position - top) / height));
+    let volumePercentage = Math.round(PERCENT_COEFFICIENT * (1 - (position - top) / height));
 
     volumePercentage = volumePercentage >= 0 ? volumePercentage : 0;
 
-    return volumePercentage <= 100 ? volumePercentage : 100;
+    return volumePercentage <= PERCENT_COEFFICIENT ? volumePercentage : PERCENT_COEFFICIENT;
   };
 
   moveAt = (percent) => {
     const progress = document.querySelector('.progress');
     const handle = document.querySelector('.volume-handle');
     progress.style.height = `${percent}%`;
-    handle.style.top = `${(100 - percent) * 0.9}%`;
+    handle.style.top = `${(PERCENT_COEFFICIENT - percent) * NOT_FULL_TOP}%`;
   };
 
   changeVolume = (volumePercentage) => {
     const { audio } = this.props;
-    const volume = volumePercentage / 100;
+    const volume = volumePercentage / PERCENT_COEFFICIENT;
     audio.volume = volume;
   };
 

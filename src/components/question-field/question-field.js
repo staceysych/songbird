@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Player from '../player/player';
 import Poster from '../poster/poster';
 import Loader from '../loader/loader';
+import { LOADER_DELAY } from '../../utils/constants';
 
 export default class QuestionField extends Component {
   constructor() {
@@ -12,7 +13,7 @@ export default class QuestionField extends Component {
       isLoading: true,
     };
 
-    setTimeout(() => { this.changeLoading(); }, 1000);
+    setTimeout(() => { this.changeLoading(); }, LOADER_DELAY);
   }
 
   changeLoading = () => {

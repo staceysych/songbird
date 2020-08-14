@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Player from '../player/player';
 
@@ -11,5 +12,10 @@ const SpellFeatures = ({ birdName, latinName }) => (
     </li>
   </ul>
 );
+
+SpellFeatures.propTypes = {
+  birdName: PropTypes.string.isRequired,
+  latinName: PropTypes.string.isRequired,
+};
 
 export default SpellFeatures;

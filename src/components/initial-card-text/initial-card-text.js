@@ -1,9 +1,10 @@
 import React from 'react';
 
+import { INITIAL_CARD_TEXT } from '../../utils/constants';
+
 const InitialCardText = () => (
   <span className="card-text">
-    Послушайте заклинание.
-    Выберите из списка, что делает это заклинание.
+    {INITIAL_CARD_TEXT}
   </span>
 );
 

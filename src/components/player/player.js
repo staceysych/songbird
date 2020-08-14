@@ -6,6 +6,12 @@ import pauseImage from '../../assets/images/pause.png';
 import Loader from '../loader/loader';
 import Volume from './volume';
 import Timeline from './time-line';
+import {
+  DEFAULT_AUDIO_TIME,
+  TOTAL_VOLUME_SLIDER_HEIGHT,
+  TOTAL_TIMELINE_WIDTH,
+  GET_DURATION_DELAY,
+} from '../../utils/constants';
 
 export default class Player extends Component {
   constructor(props) {
@@ -13,7 +19,7 @@ export default class Player extends Component {
     this.state = {
       isPlaying: false,
       audio: new Audio(props.audioUrl),
-      currentTime: '00:00.00',
+      currentTime: DEFAULT_AUDIO_TIME,
       duration: '',
       isLoading: true,
     };
@@ -57,7 +63,7 @@ export default class Player extends Component {
 
       this.setState({
         isPlaying: false,
-        currentTime: '00:00.00',
+        currentTime: DEFAULT_AUDIO_TIME,
       });
     }
   };
@@ -79,7 +85,7 @@ export default class Player extends Component {
 
   calculateCurrentTimeOnDrag = (position) => {
     const { audio } = this.state;
-    const currentTimeOnPosition = (audio.duration * position) / 100;
+    const currentTimeOnPosition = (audio.duration * position) / TOTAL_TIMELINE_WIDTH;
     audio.currentTime = currentTimeOnPosition;
     this.updateCurrentTime(audio);
   }
@@ -88,7 +94,7 @@ export default class Player extends Component {
     const fillBar = document.querySelector('.player-fill');
     const position = audio.currentTime / audio.duration;
 
-    fillBar.style.width = `${position * 100}%`;
+    fillBar.style.width = `${position * TOTAL_VOLUME_SLIDER_HEIGHT}%`;
   };
 
   getDuration = () => {
@@ -101,7 +107,7 @@ export default class Player extends Component {
     } else {
       setTimeout(() => {
         this.getDuration();
-      }, 300);
+      }, GET_DURATION_DELAY);
     }
   };
 

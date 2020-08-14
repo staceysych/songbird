@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import {
+  DATA_OBJ_LENGTH,
+} from '../../utils/constants';
 import Header from '../header/header';
 import spellData from '../../data/data';
 import randomInteger from '../../utils/random-integer';
@@ -33,7 +36,7 @@ export default class App extends Component {
 
   generateWarmUp = (data) => {
     const shuffledArray = shuffleArray(data);
-    const randomInt = randomInteger(0, 6);
+    const randomInt = randomInteger(0, DATA_OBJ_LENGTH);
     const warmUp = [];
     shuffledArray.map((arr) => warmUp.push(arr[randomInt]));
     return warmUp;

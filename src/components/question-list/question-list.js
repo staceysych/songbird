@@ -4,10 +4,6 @@ import PropTypes from 'prop-types';
 import QuestionItem from '../question-item/question-item';
 
 export default class QuestionList extends Component {
-  constructor() {
-    super();
-  }
-
   render() {
     const { filter } = this.props;
 

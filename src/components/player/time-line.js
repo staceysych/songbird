@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import {
+  PERCENT_COEFFICIENT,
+} from '../../utils/constants';
+
 class Timeline extends Component {
     calculateTimeLinePercent = (position) => {
       const slider = document.querySelector('.player-timeline');
       const { left, width } = slider.getBoundingClientRect();
 
-      let timeLinePercentage = Math.round(100 * ((position - left) / width));
+      let timeLinePercentage = Math.round(PERCENT_COEFFICIENT * ((position - left) / width));
       timeLinePercentage = timeLinePercentage >= 0 ? timeLinePercentage : 0;
-      return timeLinePercentage <= 100 ? timeLinePercentage : 100;
+      return timeLinePercentage <= PERCENT_COEFFICIENT ? timeLinePercentage : PERCENT_COEFFICIENT;
     };
 
       moveAt = (percent) => {
