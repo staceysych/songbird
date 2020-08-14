@@ -94,7 +94,7 @@ export default class Player extends Component {
 
   render() {
     const {
-      isPlaying, currentTime, duration, isLoading,
+      isPlaying, currentTime, duration, isLoading, audio,
     } = this.state;
     const spinner = isLoading ? <Loader /> : null;
     const time = isLoading ? null : (
@@ -124,7 +124,7 @@ export default class Player extends Component {
       <div className="player-controls">
         <div className="play-button">{icon}</div>
         <Timeline />
-        <Volume />
+        <Volume audio={audio} />
       </div>
     );
 

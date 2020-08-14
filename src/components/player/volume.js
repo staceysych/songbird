@@ -1,59 +1,76 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import volumeImage from '../../assets/images/volume.png';
 
-const onVolumeClick = () => {
-  const volumeControls = document.querySelector('.volume-controls');
-  volumeControls.classList.toggle('hidden');
-};
+class Volume extends Component {
+  onVolumeClick = () => {
+    const volumeControls = document.querySelector('.volume-controls');
+    volumeControls.classList.toggle('hidden');
+  };
 
-const calculateVolumePercent = (position) => {
-  const slider = document.querySelector('.slider');
-  const { top, height } = slider.getBoundingClientRect();
+  calculateVolumePercent = (position) => {
+    const slider = document.querySelector('.slider');
+    const { top, height } = slider.getBoundingClientRect();
+    let volumePercentage = Math.round(100 * (1 - (position - top) / height));
 
-  let volumePercentage = Math.round(100 * (1 - (position - top) / height));
-  volumePercentage = volumePercentage >= 0 ? volumePercentage : 0;
-  return volumePercentage <= 100 ? volumePercentage : 100;
-};
+    volumePercentage = volumePercentage >= 0 ? volumePercentage : 0;
 
-const moveAt = (percent) => {
-  const progress = document.querySelector('.progress');
-  const handle = document.querySelector('.volume-handle');
-  progress.style.height = `${percent}%`;
-  handle.style.top = `${(100 - percent) * 0.9}%`;
-  console.log(percent);
-};
+    return volumePercentage <= 100 ? volumePercentage : 100;
+  };
 
-const changeVolumePosition = (event) => {
-  const progressPositionY = event.clientY;
-  const volumePercentage = calculateVolumePercent(progressPositionY);
-  moveAt(volumePercentage);
-};
+  moveAt = (percent) => {
+    const progress = document.querySelector('.progress');
+    const handle = document.querySelector('.volume-handle');
+    progress.style.height = `${percent}%`;
+    handle.style.top = `${(100 - percent) * 0.9}%`;
+  };
 
-const onMouseDown = (event) => {
-  changeVolumePosition(event);
+  changeVolume = (volumePercentage) => {
+    const { audio } = this.props;
+    const volume = volumePercentage / 100;
+    audio.volume = volume;
+  };
 
-  document.addEventListener('mousemove', changeVolumePosition);
-  document.addEventListener('mouseup', () => {
-    document.removeEventListener('mousemove', changeVolumePosition);
-  });
-};
+  changeVolumePosition = (event) => {
+    const progressPositionY = event.clientY;
+    const volumePercentage = this.calculateVolumePercent(progressPositionY);
 
-const Volume = () => (
-  <div className="player-volume">
-    <img
-      alt="volume"
-      className="volume-icon"
-      src={volumeImage}
-      onClick={onVolumeClick}
-    />
-    <div className="volume-controls hidden">
-      <div className="slider" onMouseDown={onMouseDown}>
-        <div className="progress" />
-        <div className="player-handle volume-handle" />
+    this.moveAt(volumePercentage);
+    this.changeVolume(volumePercentage);
+  };
+
+  onMouseDown = (event) => {
+    this.changeVolumePosition(event);
+
+    document.addEventListener('mousemove', this.changeVolumePosition);
+    document.addEventListener('mouseup', () => {
+      document.removeEventListener('mousemove', this.changeVolumePosition);
+    });
+  };
+
+  render() {
+    return (
+      <div className="player-volume">
+        <img
+          alt="volume"
+          className="volume-icon"
+          src={volumeImage}
+          onClick={this.onVolumeClick}
+        />
+        <div className="volume-controls hidden">
+          <div className="slider" onMouseDown={this.onMouseDown}>
+            <div className="progress" />
+            <div className="player-handle volume-handle" />
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-);
+    );
+  }
+}
+
+Volume.propTypes = {
+  audio: PropTypes.objectOf(PropTypes.object).isRequired,
+};
 
 export default Volume;
