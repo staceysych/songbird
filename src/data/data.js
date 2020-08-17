@@ -233,7 +233,7 @@ const spellsData = [
       shortDescription: 'Вызов темной метки',
       descriptionRu: 'Вызывает темную метку, которая является знаком Пожирателей Смерти.',
       descriptionEng: 'Conjures the Dark Mark, which is the sign of the Death Eaters.',
-      image: 'https://vignette.wikia.nocookie.net/harrypotter/images/b/bc/Legilimency.gif/revision/latest?cb=20160730024521',
+      image: 'https://vignette.wikia.nocookie.net/harrypotter/images/c/c9/Morsmordre.gif/revision/latest/scale-to-width-down/250?cb=20180607231706',
       audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/morsmordre.mp3',
     },
     {

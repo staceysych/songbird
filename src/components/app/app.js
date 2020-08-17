@@ -22,6 +22,7 @@ export default class App extends Component {
       currentSpell: {},
       score: 0,
       maxRoundScore: 6,
+      isCorrectFound: false,
     };
   }
 
@@ -64,6 +65,7 @@ export default class App extends Component {
           return {
             score: score + maxRoundScore,
             isCorrect: currentObj.isCorrect,
+            isCorrectFound: true,
           };
         });
       } else {
@@ -120,9 +122,7 @@ export default class App extends Component {
       currentSpell,
       loading,
       score,
-      isCorrect,
-      isClicked,
-      currentSpellId,
+      isCorrectFound,
     } = this.state;
     const loader = loading ? <Loader /> : null;
     console.log('current spell', currentSpell);
@@ -133,7 +133,12 @@ export default class App extends Component {
         {loader}
         <div className="container">
           <Header filter={filter} score={score} />
-          {Object.keys(currentSpell).length && <QuestionField currentSpell={currentSpell} />}
+          {Object.keys(currentSpell).length && (
+          <QuestionField
+            currentSpell={currentSpell}
+            isCorrectFound={isCorrectFound}
+          />
+          )}
           {warmUpArr.length
           && Object.keys(currentSpell).length
           && (
@@ -141,9 +146,6 @@ export default class App extends Component {
             warmUpData={warmUpArr}
             currentSpell={currentSpell}
             onSpellClick={this.onSpellClick}
-            isCorrect={isCorrect}
-            isClicked={isClicked}
-            currentSpellId={currentSpellId}
           />
           )}
         </div>

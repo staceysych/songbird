@@ -29,20 +29,25 @@ export default class QuestionField extends Component {
     return Array(strLength).fill('*').join('');
   };
 
+  getCurrentSpellImageUrl = (spell, isCorrectAnswer) => {
+    const imageUrl = isCorrectAnswer ? spell.image : '';
+    return imageUrl;
+  }
+
   render() {
-    const { currentSpell } = this.props;
+    const { currentSpell, isCorrectFound } = this.props;
     const { isLoading } = this.state;
     const audioUrl = currentSpell.audio;
     console.log('playing field spell:', currentSpell);
-    console.log('playing field audio:', audioUrl);
     const hiddenDescription = this.generateHiddenDescription(currentSpell);
+    const imageUrl = this.getCurrentSpellImageUrl(currentSpell, isCorrectFound);
 
     const spinner = isLoading ? <Loader /> : null;
     const player = !isLoading ? <Player audioUrl={audioUrl} /> : null;
 
     return (
       <div className="question-field jumbotron rounded d-flex">
-        <Poster />
+        <Poster imageUrl={imageUrl} />
         <div className="question-box">
           <ul className="list-group list-group-flush">
             <li className="list-group-item">
@@ -70,4 +75,5 @@ QuestionField.propTypes = {
     image: PropTypes.string,
     audio: PropTypes.string,
   }).isRequired,
+  isCorrectFound: PropTypes.bool.isRequired,
 };
