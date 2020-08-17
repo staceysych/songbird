@@ -1,40 +1,54 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import PropTypes from 'prop-types';
 
-export default class SpellListItem extends Component {
-  onSpellClick = ({ target }) => {
-    let { id } = target;
-    if (!id.includes('span')) {
-      id = `span-${id}`;
-    }
-    document.getElementById(id).classList.add('correct');
+const renderItems = (arr, onSpellClick) => arr.map(({
+  shortDescription, isClicked, isCorrect, isWrong,
+}) => {
+  let spanClassName = 'checker-btn';
+  let listClassName = 'list-group-item';
+
+  if (isClicked) {
+    listClassName += ' clicked';
   }
 
-  renderItems = (arr) => arr.map(({ shortDescription }) => (
+  if (isCorrect) {
+    spanClassName += ' correct';
+  }
+
+  if (isWrong) {
+    spanClassName += ' wrong';
+  }
+
+  return (
     <li
       key={shortDescription}
       id={shortDescription}
-      className="list-group-item"
-      onClick={this.onSpellClick}
+      className={listClassName}
+      onClick={onSpellClick}
     >
-      <span id={`span-${shortDescription}`} className="checker-btn" />
+      <span className={spanClassName} />
       {shortDescription}
     </li>
-  ))
+  );
+});
 
-  render() {
-    const { warmUpArr } = this.props;
-    const items = this.renderItems(warmUpArr);
+const SpellListItem = ({
+  onSpellClick,
+  warmUpArr,
+}) => {
+  const items = renderItems(warmUpArr, onSpellClick);
 
-    return (
-      <>
-        { items }
-      </>
-    );
-  }
-}
+  return (
+    <>
+      { items }
+    </>
+  );
+};
 
 SpellListItem.propTypes = {
+  onSpellClick: PropTypes.func.isRequired,
   warmUpArr: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
+
+export default SpellListItem;

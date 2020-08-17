@@ -20,6 +20,8 @@ export default class App extends Component {
       filter: 'warm-up',
       warmUpArr: [],
       currentSpell: {},
+      score: 0,
+      maxRoundScore: 6,
     };
   }
 
@@ -39,6 +41,11 @@ export default class App extends Component {
     const randomInt = randomInteger(0, DATA_OBJ_LENGTH);
     const warmUp = [];
     shuffledArray.map((arr) => warmUp.push(arr[randomInt]));
+    warmUp.forEach((el) => {
+      el.isClicked = false;
+      el.isCorrect = false;
+      el.isWrong = false;
+    });
     return warmUp;
   };
 
@@ -47,9 +54,75 @@ export default class App extends Component {
     return arr[randomInt];
   };
 
+  isCorrectSpellDescription = (target) => {
+    const { currentSpell } = this.state;
+    if (!target.classList.contains('clicked')) {
+      if (target.id === currentSpell.shortDescription) {
+        this.setState(({ score, maxRoundScore, warmUpArr }) => {
+          const currentObj = this.getCurrentObjOnClick(warmUpArr, target.id);
+          currentObj.isCorrect = true;
+          return {
+            score: score + maxRoundScore,
+            isCorrect: currentObj.isCorrect,
+          };
+        });
+      } else {
+        this.setState(({ maxRoundScore, warmUpArr }) => {
+          const currentObj = this.getCurrentObjOnClick(warmUpArr, target.id);
+          currentObj.isWrong = true;
+
+          return {
+            maxRoundScore: maxRoundScore - 1,
+            isWrong: currentObj.isWrong,
+          };
+        });
+      }
+    }
+  }
+
+  getCurrentObjOnClick = (arr, id) => {
+    const arrayCopy = [...arr];
+    const index = arrayCopy.findIndex((el) => el.shortDescription === id);
+    return arrayCopy[index];
+  }
+
+  addClickedClassName = (id) => {
+    this.setState(({ warmUpArr }) => {
+      const currentObj = this.getCurrentObjOnClick(warmUpArr, id);
+      currentObj.isClicked = true;
+
+      return {
+        isClicked: currentObj.isClicked,
+      };
+    });
+  }
+
+  addCorrectClassName = (id) => {
+    this.setState(({ warmUpArr }) => {
+      const currentObj = this.getCurrentObjOnClick(warmUpArr, id);
+      currentObj.isCorrect = true;
+
+      return {
+        isCorrect: currentObj.isCorrect,
+      };
+    });
+  }
+
+  onSpellClick = ({ target }) => {
+    this.isCorrectSpellDescription(target);
+    this.addClickedClassName(target.id);
+  }
+
   render() {
     const {
-      warmUpArr, filter, currentSpell, loading,
+      warmUpArr,
+      filter,
+      currentSpell,
+      loading,
+      score,
+      isCorrect,
+      isClicked,
+      currentSpellId,
     } = this.state;
     const loader = loading ? <Loader /> : null;
     console.log('current spell', currentSpell);
@@ -59,9 +132,20 @@ export default class App extends Component {
       <>
         {loader}
         <div className="container">
-          <Header filter={filter} />
+          <Header filter={filter} score={score} />
           {Object.keys(currentSpell).length && <QuestionField currentSpell={currentSpell} />}
-          {warmUpArr.length && <MainField warmUpData={warmUpArr} />}
+          {warmUpArr.length
+          && Object.keys(currentSpell).length
+          && (
+          <MainField
+            warmUpData={warmUpArr}
+            currentSpell={currentSpell}
+            onSpellClick={this.onSpellClick}
+            isCorrect={isCorrect}
+            isClicked={isClicked}
+            currentSpellId={currentSpellId}
+          />
+          )}
         </div>
       </>
     );

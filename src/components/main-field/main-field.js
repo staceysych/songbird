@@ -16,14 +16,17 @@ export default class MainField extends Component {
 
   render() {
     const { isGameOn } = this.state;
-    const { warmUpData } = this.props;
+    const { warmUpData, onSpellClick } = this.props;
     const birdCard = isGameOn ? <SpellInfo /> : <InitialCardText />;
 
     return (
       <div className="row md2">
         <div className="col-md-6">
-          <ul className="birds-list list-group">
-            <SpellListItem warmUpArr={warmUpData} />
+          <ul className="list-group spell-list">
+            <SpellListItem
+              warmUpArr={warmUpData}
+              onSpellClick={onSpellClick}
+            />
           </ul>
         </div>
         <div className="col-md-6">
@@ -39,4 +42,5 @@ export default class MainField extends Component {
 
 MainField.propTypes = {
   warmUpData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onSpellClick: PropTypes.func.isRequired,
 };
