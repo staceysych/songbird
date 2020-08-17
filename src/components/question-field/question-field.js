@@ -22,28 +22,29 @@ export default class QuestionField extends Component {
     });
   }
 
-  generateHiddenDescription = (obj) => {
-    const { shortDescription } = obj;
+  generateHiddenDescription = (spell) => {
+    const { shortDescription } = spell;
 
     const strLength = shortDescription.length;
     return Array(strLength).fill('*').join('');
   };
 
-  getCurrentSpellImageUrl = (spell, isCorrectAnswer) => {
-    const imageUrl = isCorrectAnswer ? spell.image : '';
+  getCurrentSpellImageUrl = (img, isCorrectAnswer) => {
+    const imageUrl = isCorrectAnswer ? img : '';
     return imageUrl;
   }
 
   render() {
     const { currentSpell, isCorrectFound } = this.props;
     const { isLoading } = this.state;
-    const audioUrl = currentSpell.audio;
+    const { shortDescription, audio, image } = currentSpell;
     console.log('playing field spell:', currentSpell);
     const hiddenDescription = this.generateHiddenDescription(currentSpell);
-    const imageUrl = this.getCurrentSpellImageUrl(currentSpell, isCorrectFound);
+    const description = isCorrectFound ? shortDescription : hiddenDescription;
+    const imageUrl = this.getCurrentSpellImageUrl(image, isCorrectFound);
 
     const spinner = isLoading ? <Loader /> : null;
-    const player = !isLoading ? <Player audioUrl={audioUrl} /> : null;
+    const player = !isLoading ? <Player audioUrl={audio} /> : null;
 
     return (
       <div className="question-field jumbotron rounded d-flex">
@@ -51,7 +52,7 @@ export default class QuestionField extends Component {
         <div className="question-box">
           <ul className="list-group list-group-flush">
             <li className="list-group-item">
-              <span className="hidden-name">{hiddenDescription}</span>
+              <span className="hidden-name">{description}</span>
             </li>
             <li className="list-group-item">
               {spinner}
