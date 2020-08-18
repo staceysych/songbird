@@ -23,6 +23,8 @@ export default class App extends Component {
       score: 0,
       maxRoundScore: 6,
       isCorrectFound: false,
+      clickedSpellObject: {},
+      isGameOn: false,
     };
   }
 
@@ -111,8 +113,14 @@ export default class App extends Component {
   }
 
   onSpellClick = ({ target }) => {
+    const { warmUpArr } = this.state;
     this.isCorrectSpellDescription(target);
     this.addClickedClassName(target.id);
+    const clickedObj = this.getCurrentObjOnClick(warmUpArr, target.id);
+    this.setState({
+      clickedSpellObject: clickedObj,
+      isGameOn: true,
+    });
   }
 
   render() {
@@ -123,6 +131,8 @@ export default class App extends Component {
       loading,
       score,
       isCorrectFound,
+      clickedSpellObject,
+      isGameOn,
     } = this.state;
     const loader = loading ? <Loader /> : null;
     console.log('current spell', currentSpell);
@@ -146,6 +156,8 @@ export default class App extends Component {
             warmUpData={warmUpArr}
             currentSpell={currentSpell}
             onSpellClick={this.onSpellClick}
+            clickedObj={clickedSpellObject}
+            isGameOn={isGameOn}
           />
           )}
         </div>

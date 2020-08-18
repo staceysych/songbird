@@ -2,22 +2,25 @@
   color: $text-color;
   text-decoration: none;
   &:hover {
-      color: $text-color;
-      text-decoration: none;
+    color: $text-color;
+    text-decoration: none;
   }
 }
 
 .question-list .list-group-item {
+  display: flex;
   flex: auto;
-
-  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
 
   background-color: $questionListColor;
   border: none;
   border-right: dotted 1px $text-color;
+
   transition: all ease-out .3s;
   &:hover {
-      background-color: $hover-color;
+    background-color: $hover-color;
   }
 }
 
@@ -26,8 +29,8 @@
 }
 
 .question-list .list-group-item:last-child {
-  border-bottom-left-radius: initial;
   border-right: none;
+  border-bottom-left-radius: initial;
 }
 
 .question-list .active {

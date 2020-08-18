@@ -7,21 +7,15 @@ import NextLevelBtn from '../next-level-button/next-level-btn';
 import InitialCardText from '../initial-card-text/initial-card-text';
 
 export default class MainField extends Component {
-  constructor() {
-    super();
-    this.state = {
-      isGameOn: false,
-    };
-  }
-
   render() {
-    const { isGameOn } = this.state;
-    const { warmUpData, onSpellClick } = this.props;
-    const birdCard = isGameOn ? <SpellInfo /> : <InitialCardText />;
+    const {
+      warmUpData, onSpellClick, clickedObj, isGameOn,
+    } = this.props;
+    const birdCard = isGameOn ? <SpellInfo clickedObj={clickedObj} /> : <InitialCardText />;
 
     return (
       <div className="row md2">
-        <div className="col-md-6">
+        <div className="col-md-5">
           <ul className="list-group spell-list">
             <SpellListItem
               warmUpArr={warmUpData}
@@ -29,7 +23,7 @@ export default class MainField extends Component {
             />
           </ul>
         </div>
-        <div className="col-md-6">
+        <div className="col-md-7">
           <div className="birds-info card">
             {birdCard}
           </div>
@@ -43,4 +37,5 @@ export default class MainField extends Component {
 MainField.propTypes = {
   warmUpData: PropTypes.arrayOf(PropTypes.object).isRequired,
   onSpellClick: PropTypes.func.isRequired,
+  isGameOn: PropTypes.bool.isRequired,
 };

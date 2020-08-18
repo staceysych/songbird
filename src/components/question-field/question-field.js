@@ -38,13 +38,14 @@ export default class QuestionField extends Component {
     const { currentSpell, isCorrectFound } = this.props;
     const { isLoading } = this.state;
     const { shortDescription, audio, image } = currentSpell;
+    const id = 'question-field';
     console.log('playing field spell:', currentSpell);
     const hiddenDescription = this.generateHiddenDescription(currentSpell);
     const description = isCorrectFound ? shortDescription : hiddenDescription;
     const imageUrl = this.getCurrentSpellImageUrl(image, isCorrectFound);
 
     const spinner = isLoading ? <Loader /> : null;
-    const player = !isLoading ? <Player audioUrl={audio} /> : null;
+    const player = !isLoading ? <Player audioUrl={audio} id={id} key="main" /> : null;
 
     return (
       <div className="question-field jumbotron rounded d-flex">
