@@ -67,6 +67,7 @@ class Volume extends Component {
 
   render() {
     const { isHidden, progressHight, handleTop } = this.state;
+
     const volumeControlsStyle = {
       display: isHidden ? 'none' : 'flex',
     };
