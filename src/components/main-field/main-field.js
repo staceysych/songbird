@@ -9,7 +9,7 @@ import InitialCardText from '../initial-card-text/initial-card-text';
 export default class MainField extends Component {
   render() {
     const {
-      warmUpData, onSpellClick, clickedObj, isGameOn,
+      warmUpData, onSpellClick, clickedObj, isGameOn, isCorrectFound,
     } = this.props;
     const birdCard = isGameOn ? <SpellInfo clickedObj={clickedObj} /> : <InitialCardText />;
 
@@ -24,11 +24,11 @@ export default class MainField extends Component {
           </ul>
         </div>
         <div className="col-md-7">
-          <div className="birds-info card">
+          <div className="spell-info card">
             {birdCard}
           </div>
         </div>
-        <NextLevelBtn />
+        <NextLevelBtn isCorrectFound={isCorrectFound} />
       </div>
     );
   }
@@ -38,4 +38,15 @@ MainField.propTypes = {
   warmUpData: PropTypes.arrayOf(PropTypes.object).isRequired,
   onSpellClick: PropTypes.func.isRequired,
   isGameOn: PropTypes.bool.isRequired,
+  isCorrectFound: PropTypes.bool.isRequired,
+  clickedObj: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    pronunciation: PropTypes.string,
+    shortDescription: PropTypes.string,
+    descriptionRu: PropTypes.string,
+    descriptionEng: PropTypes.string,
+    image: PropTypes.string,
+    audio: PropTypes.string,
+  }).isRequired,
 };

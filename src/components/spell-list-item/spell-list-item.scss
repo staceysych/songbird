@@ -20,6 +20,10 @@
 
 .spell-list .list-group-item:hover {
     background-color: $hover-color;
-    cursor: url('../assets/images/cursor.png'), auto;
     transition: all ease-out .3s;
+}
+
+.spell-list .list-group-item.active {
+  background-color: $hover-color;
+  border: none;
 }

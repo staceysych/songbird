@@ -3,25 +3,8 @@ import PropTypes from 'prop-types';
 
 import Player from '../player/player';
 import Poster from '../poster/poster';
-import Loader from '../loader/loader';
-import { LOADER_DELAY } from '../../utils/constants';
 
 export default class QuestionField extends Component {
-  constructor() {
-    super();
-    this.state = {
-      isLoading: true,
-    };
-
-    setTimeout(() => { this.changeLoading(); }, LOADER_DELAY);
-  }
-
-  changeLoading = () => {
-    this.setState({
-      isLoading: false,
-    });
-  }
-
   generateHiddenDescription = (spell) => {
     const { shortDescription } = spell;
 
@@ -36,16 +19,12 @@ export default class QuestionField extends Component {
 
   render() {
     const { currentSpell, isCorrectFound } = this.props;
-    const { isLoading } = this.state;
     const { shortDescription, audio, image } = currentSpell;
-    const id = 'question-field';
-    console.log('playing field spell:', currentSpell);
     const hiddenDescription = this.generateHiddenDescription(currentSpell);
     const description = isCorrectFound ? shortDescription : hiddenDescription;
     const imageUrl = this.getCurrentSpellImageUrl(image, isCorrectFound);
 
-    const spinner = isLoading ? <Loader /> : null;
-    const player = !isLoading ? <Player audioUrl={audio} id={id} key="main" /> : null;
+    const player = <Player audioUrl={audio} key="main" />;
 
     return (
       <div className="question-field jumbotron rounded d-flex">
@@ -56,7 +35,6 @@ export default class QuestionField extends Component {
               <span className="hidden-name">{description}</span>
             </li>
             <li className="list-group-item">
-              {spinner}
               {player}
             </li>
           </ul>

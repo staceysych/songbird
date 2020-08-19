@@ -52,6 +52,7 @@ export default class App extends Component {
       el.isClicked = false;
       el.isCorrect = false;
       el.isWrong = false;
+      el.isActive = false;
     });
     return warmUp;
   };
@@ -68,7 +69,6 @@ export default class App extends Component {
       winSound,
       errorSound,
     } = this.state;
-
 
     if (!target.classList.contains('clicked') && !isCorrectFound) {
       if (target.id === currentSpell.shortDescription) {
@@ -133,10 +133,28 @@ export default class App extends Component {
     });
   }
 
+  addActiveClassName = (id) => {
+    this.setState(({ warmUpArr }) => {
+      const arrayCopy = [...warmUpArr];
+      arrayCopy.forEach((el) => {
+        if (el.isActive) {
+          el.isActive = false;
+        }
+      });
+      const currentObj = this.getCurrentObjOnClick(arrayCopy, id);
+      currentObj.isActive = true;
+
+      return {
+        isActive: currentObj.isActive,
+      };
+    });
+  }
+
   onSpellClick = ({ target }) => {
     const { warmUpArr } = this.state;
     this.isCorrectSpellDescription(target);
     this.addClickedClassName(target.id);
+    this.addActiveClassName(target.id);
     const clickedObj = this.getCurrentObjOnClick(warmUpArr, target.id);
     this.setState({
       clickedSpellObject: clickedObj,
@@ -179,6 +197,7 @@ export default class App extends Component {
             onSpellClick={this.onSpellClick}
             clickedObj={clickedSpellObject}
             isGameOn={isGameOn}
+            isCorrectFound={isCorrectFound}
           />
           )}
         </div>

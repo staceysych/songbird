@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import playImage from '../../assets/images/video.png';
 import pauseImage from '../../assets/images/pause.png';
-import Loader from '../loader/loader';
 import Volume from './volume';
 import Timeline from './time-line';
 import {
@@ -21,7 +20,6 @@ export default class Player extends Component {
       audio: new Audio(props.audioUrl),
       currentTime: DEFAULT_AUDIO_TIME,
       duration: '',
-      isLoading: true,
       fillWidth: 0,
     };
   }
@@ -42,11 +40,6 @@ export default class Player extends Component {
     this.getDuration();
   }
 
-  changeLoading = () => {
-    this.setState({
-      isLoading: false,
-    });
-  };
 
   onPlayClick = () => {
     this.changeIcon();
@@ -111,7 +104,6 @@ export default class Player extends Component {
   getDuration = () => {
     const { audio } = this.state;
     audio.addEventListener('loadedmetadata', () => {
-      this.changeLoading();
       this.setState({
         duration: `00:0${(audio.duration).toFixed(2)}`,
       });
@@ -172,14 +164,13 @@ export default class Player extends Component {
 
       render() {
         const {
-          isPlaying, currentTime, duration, isLoading, audio, fillWidth, id,
+          isPlaying, currentTime, duration, audio, fillWidth, id,
         } = this.state;
 
         const playerStyle = {
           width: fillWidth,
         };
-        const spinner = isLoading ? <Loader /> : null;
-        const time = isLoading ? null : (
+        const time = (
           <div className="timeline-info">
             <span>{currentTime}</span>
             <span>{duration}</span>
@@ -204,7 +195,7 @@ export default class Player extends Component {
           />
         );
 
-        const controls = isLoading ? null : (
+        const controls = (
           <div className="player-controls">
             <div className="play-button">{icon}</div>
             <Timeline
@@ -217,7 +208,6 @@ export default class Player extends Component {
 
         return (
           <>
-            {spinner}
             {controls}
             {time}
           </>

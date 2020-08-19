@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const renderItems = (arr, onSpellClick) => arr.map(({
-  shortDescription, isClicked, isCorrect, isWrong,
+  shortDescription, isClicked, isCorrect, isWrong, isActive,
 }) => {
   let spanClassName = 'checker-btn';
   let listClassName = 'list-group-item';
@@ -18,6 +18,10 @@ const renderItems = (arr, onSpellClick) => arr.map(({
 
   if (isWrong) {
     spanClassName += ' wrong';
+  }
+
+  if (isActive) {
+    listClassName += ' active';
   }
 
   return (
