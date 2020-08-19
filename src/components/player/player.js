@@ -40,7 +40,6 @@ export default class Player extends Component {
     this.getDuration();
   }
 
-
   onPlayClick = () => {
     this.changeIcon();
     this.playAudio();

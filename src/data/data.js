@@ -34,7 +34,7 @@ const spellsData = [
       id: 4,
       name: 'Alohomora',
       pronunciation: 'ah-LOH-ho-MOR-ah',
-      shortDescription: 'открывает закрытые объекты',
+      shortDescription: 'Открывает закрытые объекты',
       descriptionRu: 'Отпирает двери и другие предметы. Оно также может отпирать двери, которые были запечатаны запирающим заклинанием, хотя можно заколдовать двери, чтобы они не поддавались этому заклинанию.',
       descriptionEng: 'Unlocks doors and other objects. It can also unlock doors that have been sealed with a Locking Spell, although it is possible to bewitch doors to become unaffected by this spell.',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/0/0e/Alohomora.gif/revision/latest?cb=20140811055322',

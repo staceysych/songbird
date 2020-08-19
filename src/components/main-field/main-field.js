@@ -9,7 +9,7 @@ import InitialCardText from '../initial-card-text/initial-card-text';
 export default class MainField extends Component {
   render() {
     const {
-      warmUpData, onSpellClick, clickedObj, isGameOn, isCorrectFound,
+      data, onSpellClick, clickedObj, isGameOn, isCorrectFound, onNextLevelClick,
     } = this.props;
     const birdCard = isGameOn ? <SpellInfo clickedObj={clickedObj} /> : <InitialCardText />;
 
@@ -18,7 +18,7 @@ export default class MainField extends Component {
         <div className="col-md-5">
           <ul className="list-group spell-list">
             <SpellListItem
-              warmUpArr={warmUpData}
+              data={data}
               onSpellClick={onSpellClick}
             />
           </ul>
@@ -28,17 +28,21 @@ export default class MainField extends Component {
             {birdCard}
           </div>
         </div>
-        <NextLevelBtn isCorrectFound={isCorrectFound} />
+        <NextLevelBtn
+          isCorrectFound={isCorrectFound}
+          onNextLevelClick={onNextLevelClick}
+        />
       </div>
     );
   }
 }
 
 MainField.propTypes = {
-  warmUpData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
   onSpellClick: PropTypes.func.isRequired,
   isGameOn: PropTypes.bool.isRequired,
   isCorrectFound: PropTypes.bool.isRequired,
+  onNextLevelClick: PropTypes.func.isRequired,
   clickedObj: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,

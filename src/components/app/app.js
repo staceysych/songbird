@@ -4,6 +4,7 @@ import {
   DATA_OBJ_LENGTH,
   WIN_SOUND_URL,
   ERROR_SOUND_URL,
+  QUESTION_ARRAY,
 } from '../../utils/constants';
 import Header from '../header/header';
 import spellData from '../../data/data';
@@ -17,9 +18,10 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
+      page: 0,
       loading: true,
       data: spellData,
-      filter: 'warm-up',
+      filter: QUESTION_ARRAY[0].name,
       warmUpArr: [],
       currentSpell: {},
       score: 0,
@@ -40,6 +42,13 @@ export default class App extends Component {
       warmUpArr,
       currentSpell,
       loading: false,
+    });
+  }
+
+  setDefaultParameters = () => {
+    this.setState({
+      isCorrectFound: false,
+      isGameOn: false,
     });
   }
 
@@ -70,10 +79,14 @@ export default class App extends Component {
       errorSound,
     } = this.state;
 
+    console.log(!target.classList.contains('clicked') && !isCorrectFound);
     if (!target.classList.contains('clicked') && !isCorrectFound) {
       if (target.id === currentSpell.shortDescription) {
-        this.setState(({ score, maxRoundScore, warmUpArr }) => {
-          const currentObj = this.getCurrentObjOnClick(warmUpArr, target.id);
+        this.setState(({
+          score, maxRoundScore, warmUpArr, data, page,
+        }) => {
+          const dataArr = page === 0 ? warmUpArr : data[page - 1];
+          const currentObj = this.getCurrentObjOnClick(dataArr, target.id);
           currentObj.isCorrect = true;
 
           return {
@@ -85,8 +98,11 @@ export default class App extends Component {
 
         winSound.play();
       } else {
-        this.setState(({ maxRoundScore, warmUpArr }) => {
-          const currentObj = this.getCurrentObjOnClick(warmUpArr, target.id);
+        this.setState(({
+          maxRoundScore, warmUpArr, data, page,
+        }) => {
+          const dataArr = page === 0 ? warmUpArr : data[page - 1];
+          const currentObj = this.getCurrentObjOnClick(dataArr, target.id);
           currentObj.isWrong = true;
 
           return {
@@ -112,8 +128,9 @@ export default class App extends Component {
   }
 
   addClickedClassName = (id) => {
-    this.setState(({ warmUpArr }) => {
-      const currentObj = this.getCurrentObjOnClick(warmUpArr, id);
+    this.setState(({ warmUpArr, data, page }) => {
+      const dataArr = page === 0 ? warmUpArr : data[page - 1];
+      const currentObj = this.getCurrentObjOnClick(dataArr, id);
       currentObj.isClicked = true;
 
       return {
@@ -123,8 +140,9 @@ export default class App extends Component {
   }
 
   addCorrectClassName = (id) => {
-    this.setState(({ warmUpArr }) => {
-      const currentObj = this.getCurrentObjOnClick(warmUpArr, id);
+    this.setState(({ warmUpArr, data, page }) => {
+      const dataArr = page === 0 ? warmUpArr : data[page - 1];
+      const currentObj = this.getCurrentObjOnClick(dataArr, id);
       currentObj.isCorrect = true;
 
       return {
@@ -134,8 +152,9 @@ export default class App extends Component {
   }
 
   addActiveClassName = (id) => {
-    this.setState(({ warmUpArr }) => {
-      const arrayCopy = [...warmUpArr];
+    this.setState(({ warmUpArr, data, page }) => {
+      const dataArr = page === 0 ? warmUpArr : data[page - 1];
+      const arrayCopy = [...dataArr];
       arrayCopy.forEach((el) => {
         if (el.isActive) {
           el.isActive = false;
@@ -150,16 +169,39 @@ export default class App extends Component {
     });
   }
 
+  setDefaultPropInObject = (arr) => (arr.map((el) => {
+    if (el.isClicked) {
+      el.isClicked = false;
+      el.isCorrect = false;
+      el.isWrong = false;
+      el.isActive = false;
+    }
+
+    return el;
+  }));
+
   onSpellClick = ({ target }) => {
-    const { warmUpArr } = this.state;
+    const { warmUpArr, page, data } = this.state;
+    const dataArr = page === 0 ? warmUpArr : data[page - 1];
     this.isCorrectSpellDescription(target);
     this.addClickedClassName(target.id);
     this.addActiveClassName(target.id);
-    const clickedObj = this.getCurrentObjOnClick(warmUpArr, target.id);
+    const clickedObj = this.getCurrentObjOnClick(dataArr, target.id);
     this.setState({
       clickedSpellObject: clickedObj,
       isGameOn: true,
     });
+  }
+
+  onNextLevelClick = () => {
+    const { data, page } = this.state;
+    this.setDefaultParameters();
+    this.setDefaultPropInObject(data[page]);
+    this.setState(() => ({
+      page: page + 1,
+      currentSpell: this.generateRandomSpell(data[page]),
+      filter: QUESTION_ARRAY[page + 1].name,
+    }));
   }
 
   render() {
@@ -172,10 +214,12 @@ export default class App extends Component {
       isCorrectFound,
       clickedSpellObject,
       isGameOn,
+      page,
+      data,
     } = this.state;
     const loader = loading ? <Loader /> : null;
-    console.log('current spell', currentSpell);
-    console.log('warm-up', warmUpArr);
+
+    const dataArray = page === 0 ? warmUpArr : data[page - 1];
 
     return (
       <>
@@ -192,12 +236,13 @@ export default class App extends Component {
           && Object.keys(currentSpell).length
           && (
           <MainField
-            warmUpData={warmUpArr}
+            data={dataArray}
             currentSpell={currentSpell}
             onSpellClick={this.onSpellClick}
             clickedObj={clickedSpellObject}
             isGameOn={isGameOn}
             isCorrectFound={isCorrectFound}
+            onNextLevelClick={this.onNextLevelClick}
           />
           )}
         </div>

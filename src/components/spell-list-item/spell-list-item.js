@@ -39,9 +39,9 @@ const renderItems = (arr, onSpellClick) => arr.map(({
 
 const SpellListItem = ({
   onSpellClick,
-  warmUpArr,
+  data,
 }) => {
-  const items = renderItems(warmUpArr, onSpellClick);
+  const items = renderItems(data, onSpellClick);
 
   return (
     <>
@@ -52,7 +52,7 @@ const SpellListItem = ({
 
 SpellListItem.propTypes = {
   onSpellClick: PropTypes.func.isRequired,
-  warmUpArr: PropTypes.arrayOf(PropTypes.object).isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default SpellListItem;
