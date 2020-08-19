@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import {
   DATA_OBJ_LENGTH,
+  WIN_SOUND_URL,
+  ERROR_SOUND_URL,
 } from '../../utils/constants';
 import Header from '../header/header';
 import spellData from '../../data/data';
@@ -25,6 +27,8 @@ export default class App extends Component {
       isCorrectFound: false,
       clickedSpellObject: {},
       isGameOn: false,
+      winSound: new Audio(WIN_SOUND_URL),
+      errorSound: new Audio(ERROR_SOUND_URL),
     };
   }
 
@@ -58,18 +62,28 @@ export default class App extends Component {
   };
 
   isCorrectSpellDescription = (target) => {
-    const { currentSpell, isCorrectFound } = this.state;
+    const {
+      currentSpell,
+      isCorrectFound,
+      winSound,
+      errorSound,
+    } = this.state;
+
+
     if (!target.classList.contains('clicked') && !isCorrectFound) {
       if (target.id === currentSpell.shortDescription) {
         this.setState(({ score, maxRoundScore, warmUpArr }) => {
           const currentObj = this.getCurrentObjOnClick(warmUpArr, target.id);
           currentObj.isCorrect = true;
+
           return {
             score: score + maxRoundScore,
             isCorrect: currentObj.isCorrect,
             isCorrectFound: true,
           };
         });
+
+        winSound.play();
       } else {
         this.setState(({ maxRoundScore, warmUpArr }) => {
           const currentObj = this.getCurrentObjOnClick(warmUpArr, target.id);
@@ -80,6 +94,13 @@ export default class App extends Component {
             isWrong: currentObj.isWrong,
           };
         });
+
+        if (!errorSound.paused) {
+          errorSound.pause();
+          errorSound.currentTime = 0;
+        }
+
+        errorSound.play();
       }
     }
   }

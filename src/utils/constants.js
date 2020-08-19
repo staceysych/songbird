@@ -16,6 +16,8 @@ const QUESTION_ARRAY = [
   { name: 'L-P', label: 'L - P' },
   { name: 'P-W', label: 'P - W' },
 ];
+const WIN_SOUND_URL = 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/win.mp3';
+const ERROR_SOUND_URL = 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/error.mp3';
 
 export {
   DATA_OBJ_LENGTH,
@@ -27,4 +29,6 @@ export {
   NOT_FULL_TOP,
   LOADER_DELAY,
   QUESTION_ARRAY,
+  WIN_SOUND_URL,
+  ERROR_SOUND_URL,
 };
