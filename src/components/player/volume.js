@@ -8,13 +8,25 @@ import {
 } from '../../utils/constants';
 
 class Volume extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isHidden: true,
+      progressHight: '100%',
+      handleTop: '0',
+    };
+  }
+
   onVolumeClick = () => {
-    const volumeControls = document.querySelector('.volume-controls');
-    volumeControls.classList.toggle('hidden');
+    this.setState(({ isHidden }) => ({
+      isHidden: !isHidden,
+    }));
   };
 
-  calculateVolumePercent = (position) => {
-    const slider = document.querySelector('.slider');
+  calculateVolumePercent = (position, { target }) => {
+    const slider = target.classList.contains('slider')
+      ? target
+      : target.parentElement;
     const { top, height } = slider.getBoundingClientRect();
     let volumePercentage = Math.round(PERCENT_COEFFICIENT * (1 - (position - top) / height));
 
@@ -24,10 +36,10 @@ class Volume extends Component {
   };
 
   moveAt = (percent) => {
-    const progress = document.querySelector('.progress');
-    const handle = document.querySelector('.volume-handle');
-    progress.style.height = `${percent}%`;
-    handle.style.top = `${(PERCENT_COEFFICIENT - percent) * NOT_FULL_TOP}%`;
+    this.setState({
+      progressHight: `${percent}%`,
+      handleTop: `${(PERCENT_COEFFICIENT - percent) * NOT_FULL_TOP}%`,
+    });
   };
 
   changeVolume = (volumePercentage) => {
@@ -38,7 +50,7 @@ class Volume extends Component {
 
   changeVolumePosition = (event) => {
     const progressPositionY = event.clientY;
-    const volumePercentage = this.calculateVolumePercent(progressPositionY);
+    const volumePercentage = this.calculateVolumePercent(progressPositionY, event);
 
     this.moveAt(volumePercentage);
     this.changeVolume(volumePercentage);
@@ -54,6 +66,19 @@ class Volume extends Component {
   };
 
   render() {
+    const { isHidden, progressHight, handleTop } = this.state;
+    const volumeControlsStyle = {
+      display: isHidden ? 'none' : 'flex',
+    };
+
+    const progressStyle = {
+      height: progressHight,
+    };
+
+    const handleStyle = {
+      top: handleTop,
+    };
+
     return (
       <div className="player-volume">
         <img
@@ -62,10 +87,10 @@ class Volume extends Component {
           src={volumeImage}
           onClick={this.onVolumeClick}
         />
-        <div className="volume-controls hidden">
+        <div className="volume-controls" style={volumeControlsStyle}>
           <div role="button" tabIndex={0} className="slider" onMouseDown={this.onMouseDown}>
-            <div className="progress" />
-            <div className="player-handle volume-handle" />
+            <div className="progress" style={progressStyle} />
+            <div className="player-handle volume-handle" style={handleStyle} />
           </div>
         </div>
       </div>
