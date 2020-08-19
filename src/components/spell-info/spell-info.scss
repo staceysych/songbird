@@ -1,6 +1,6 @@
 .spell-info {
   width: 100%;
-  height: 100%;
+  height: 300px;
   padding: 1rem;
 
   border: 1px solid $border-color;
@@ -16,9 +16,12 @@
 
 .card-body {
   padding: 0;
+  max-height: 160px;
 }
 
 .spell-description {
   font-weight: 300;
   margin-top: 10px;
+  max-height: 100px;
+  overflow: auto;
 }
