@@ -10,7 +10,6 @@ import {
   DEFAULT_AUDIO_TIME,
   TOTAL_VOLUME_SLIDER_HEIGHT,
   TOTAL_TIMELINE_WIDTH,
-  GET_DURATION_DELAY,
   PERCENT_COEFFICIENT,
 } from '../../utils/constants';
 
@@ -33,12 +32,14 @@ export default class Player extends Component {
 
   componentDidUpdate(prevProps) {
     const { audioUrl } = this.props;
+
     if (audioUrl !== prevProps.audioUrl) {
+      const audio = new Audio(audioUrl);
       this.setState({
-        audio: new Audio(audioUrl),
+        audio,
       });
-      this.getDuration();
     }
+    this.getDuration();
   }
 
   changeLoading = () => {
@@ -109,16 +110,12 @@ export default class Player extends Component {
 
   getDuration = () => {
     const { audio } = this.state;
-    if (audio.duration) {
+    audio.addEventListener('loadedmetadata', () => {
       this.changeLoading();
       this.setState({
         duration: `00:0${(audio.duration).toFixed(2)}`,
       });
-    } else {
-      setTimeout(() => {
-        this.getDuration();
-      }, GET_DURATION_DELAY);
-    }
+    });
   };
 
   changeIcon = () => {
@@ -175,7 +172,7 @@ export default class Player extends Component {
 
       render() {
         const {
-          isPlaying, currentTime, duration, isLoading, audio, id, fillWidth,
+          isPlaying, currentTime, duration, isLoading, audio, fillWidth, id,
         } = this.state;
 
         const playerStyle = {
