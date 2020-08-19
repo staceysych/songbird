@@ -58,8 +58,8 @@ export default class App extends Component {
   };
 
   isCorrectSpellDescription = (target) => {
-    const { currentSpell } = this.state;
-    if (!target.classList.contains('clicked')) {
+    const { currentSpell, isCorrectFound } = this.state;
+    if (!target.classList.contains('clicked') && !isCorrectFound) {
       if (target.id === currentSpell.shortDescription) {
         this.setState(({ score, maxRoundScore, warmUpArr }) => {
           const currentObj = this.getCurrentObjOnClick(warmUpArr, target.id);
