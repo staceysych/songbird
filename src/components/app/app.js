@@ -25,6 +25,7 @@ export default class App extends Component {
       warmUpArr: [],
       currentSpell: {},
       score: 0,
+      maxScore: 72,
       maxRoundScore: 6,
       isCorrectFound: false,
       clickedSpellObject: {},
@@ -49,6 +50,7 @@ export default class App extends Component {
     this.setState({
       isCorrectFound: false,
       isGameOn: false,
+      maxRoundScore: 6,
     });
   }
 
@@ -79,7 +81,6 @@ export default class App extends Component {
       errorSound,
     } = this.state;
 
-    console.log(!target.classList.contains('clicked') && !isCorrectFound);
     if (!target.classList.contains('clicked') && !isCorrectFound) {
       if (target.id === currentSpell.shortDescription) {
         this.setState(({
@@ -221,30 +222,34 @@ export default class App extends Component {
 
     const dataArray = page === 0 ? warmUpArr : data[page - 1];
 
+    const headerComponents = (
+      <>
+        <Header filter={filter} score={score} />
+        <QuestionField
+          currentSpell={currentSpell}
+          isCorrectFound={isCorrectFound}
+        />
+      </>
+    );
+
+    const mainFieldComponents = (
+      <MainField
+        data={dataArray}
+        currentSpell={currentSpell}
+        onSpellClick={this.onSpellClick}
+        clickedObj={clickedSpellObject}
+        isGameOn={isGameOn}
+        isCorrectFound={isCorrectFound}
+        onNextLevelClick={this.onNextLevelClick}
+      />
+    );
+
     return (
       <>
         {loader}
         <div className="container">
-          <Header filter={filter} score={score} />
-          {Object.keys(currentSpell).length && (
-          <QuestionField
-            currentSpell={currentSpell}
-            isCorrectFound={isCorrectFound}
-          />
-          )}
-          {warmUpArr.length
-          && Object.keys(currentSpell).length
-          && (
-          <MainField
-            data={dataArray}
-            currentSpell={currentSpell}
-            onSpellClick={this.onSpellClick}
-            clickedObj={clickedSpellObject}
-            isGameOn={isGameOn}
-            isCorrectFound={isCorrectFound}
-            onNextLevelClick={this.onNextLevelClick}
-          />
-          )}
+          {Object.keys(currentSpell).length && headerComponents}
+          {warmUpArr.length && Object.keys(currentSpell).length && mainFieldComponents}
         </div>
       </>
     );

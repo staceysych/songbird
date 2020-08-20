@@ -21,6 +21,7 @@ export default class Player extends Component {
       currentTime: DEFAULT_AUDIO_TIME,
       duration: '',
       fillWidth: 0,
+      isCorrect: false,
     };
   }
 
@@ -30,11 +31,17 @@ export default class Player extends Component {
 
   componentDidUpdate(prevProps) {
     const { audioUrl } = this.props;
+    const { audio } = this.state;
 
     if (audioUrl !== prevProps.audioUrl) {
-      const audio = new Audio(audioUrl);
+      audio.pause();
+      const newAudio = new Audio(audioUrl);
       this.setState({
-        audio,
+        audio: newAudio,
+        isCorrect: false,
+        isPlaying: false,
+        fillWidth: '0',
+        currentTime: DEFAULT_AUDIO_TIME,
       });
     }
     this.getDuration();
@@ -68,16 +75,40 @@ export default class Player extends Component {
         isPlaying: false,
         currentTime: DEFAULT_AUDIO_TIME,
       });
+      audio.removeEventListener('timeupdate', this.onUpdate);
+      audio.currentTime = 0;
     }
   };
 
-  onTimeUpdate = () => {
-    const { audio } = this.state;
-    audio.addEventListener('timeupdate', () => {
-      this.updatePosition(audio);
+  pauseAudioIfIsCorrectFound = (audio) => {
+    const { isCorrectFound } = this.props;
+    if (isCorrectFound) {
+      this.pauseAudio();
+      audio.currentTime = 0;
+      this.setState({
+        isCorrect: true,
+        fillWidth: '0',
+        isPlaying: false,
+        currentTime: DEFAULT_AUDIO_TIME,
+      });
+      audio.removeEventListener('timeupdate', this.onUpdate);
+    }
+  }
+
+  onUpdate = () => {
+    const { audio, isCorrect } = this.state;
+    this.updatePosition(audio);
       this.updateCurrentTime(audio);
       this.onAudioFinish(audio);
-    });
+
+      if (!isCorrect) {
+        this.pauseAudioIfIsCorrectFound(audio);
+      }
+  }
+
+  onTimeUpdate = () => {
+    const { audio } = this.state;
+    audio.addEventListener('timeupdate', this.onUpdate);
   };
 
   updateCurrentTime = (audio) => {

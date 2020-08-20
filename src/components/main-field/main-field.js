@@ -11,7 +11,11 @@ export default class MainField extends Component {
     const {
       data, onSpellClick, clickedObj, isGameOn, isCorrectFound, onNextLevelClick,
     } = this.props;
-    const birdCard = isGameOn ? <SpellInfo clickedObj={clickedObj} /> : <InitialCardText />;
+    const birdCard = isGameOn
+      ? <SpellInfo 
+          clickedObj={clickedObj}
+        />
+      : <InitialCardText />;
 
     return (
       <div className="row md2">

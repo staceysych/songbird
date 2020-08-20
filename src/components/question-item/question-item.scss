@@ -1,10 +1,7 @@
 .question-link {
   color: $text-color;
   text-decoration: none;
-  &:hover {
-    color: $text-color;
-    text-decoration: none;
-  }
+  pointer-events: none;
 }
 
 .question-list .list-group-item {
@@ -19,9 +16,6 @@
   border-right: dotted 1px $text-color;
 
   transition: all ease-out .3s;
-  &:hover {
-    background-color: $hover-color;
-  }
 }
 
 .question-list .list-group-item:nth-child(1) {

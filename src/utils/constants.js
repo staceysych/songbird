@@ -8,6 +8,7 @@ const TOTAL_TIMELINE_WIDTH = 100;
 const PERCENT_COEFFICIENT = 100;
 const NOT_FULL_TOP = 0.9;
 const LOADER_DELAY = 1000;
+const BUTTON_TEXT = 'Next Level';
 const QUESTION_ARRAY = [
   { name: 'warm-up', label: 'Разминка' },
   { name: 'A', label: 'A-spells' },
@@ -31,4 +32,5 @@ export {
   QUESTION_ARRAY,
   WIN_SOUND_URL,
   ERROR_SOUND_URL,
+  BUTTON_TEXT,
 };

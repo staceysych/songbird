@@ -24,7 +24,7 @@ export default class QuestionField extends Component {
     const description = isCorrectFound ? shortDescription : hiddenDescription;
     const imageUrl = this.getCurrentSpellImageUrl(image, isCorrectFound);
 
-    const player = <Player audioUrl={audio} key="main" />;
+    const player = <Player audioUrl={audio} key="main" isCorrectFound={isCorrectFound} />;
 
     return (
       <div className="question-field jumbotron rounded d-flex">

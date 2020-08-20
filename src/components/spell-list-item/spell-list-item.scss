@@ -11,11 +11,11 @@
 }
 
 .correct {
-  background-color: green;
+  background-color: $correct-answer-color;
 }
 
 .wrong {
-  background-color: red;
+  background-color: $wrong-answer-color;
 }
 
 .spell-list .list-group-item:hover {

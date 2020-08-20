@@ -1,18 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { BUTTON_TEXT } from '../../utils/constants';
+
 const NextLevelBtn = ({ isCorrectFound, onNextLevelClick }) => {
-  let buttonStyle = 'next-level-btn btn';
+  let buttonClass = 'next-level-btn btn';
 
   if (isCorrectFound) {
-    buttonStyle += ' activated';
+    buttonClass += ' activated';
   }
+
+  const buttonStyle = {
+    pointerEvents: isCorrectFound ? 'all' : 'none',
+  };
+
   return (
     <button
-      className={buttonStyle}
+      className={buttonClass}
       onClick={onNextLevelClick}
+      style={buttonStyle}
     >
-      Next Level
+      {BUTTON_TEXT}
     </button>
   );
 };
