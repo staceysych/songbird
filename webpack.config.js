@@ -79,7 +79,7 @@ module.exports = (env, options) => {
       new HtmlWebpackPlugin({
         filename: 'index.html',
         template: 'index.html',
-        // favicon: 'src/assets/favicon/favicon.ico',
+        favicon: 'src/assets/favicon/favicon.ico',
         chunks: ['index'],
       }),
       new CopyPlugin({
