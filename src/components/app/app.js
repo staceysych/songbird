@@ -60,7 +60,8 @@ export default class App extends Component {
   }
 
   generateWarmUp = (data) => {
-    const shuffledArray = shuffleArray(data);
+    const dataCopy = [...data];
+    const shuffledArray = shuffleArray(dataCopy);
     const randomInt = randomInteger(0, DATA_OBJ_LENGTH);
     const warmUp = [];
     shuffledArray.map((arr) => warmUp.push(arr[randomInt]));
@@ -204,6 +205,8 @@ export default class App extends Component {
     if (page < 5) {
       console.log('next level', page);
       console.log(data[page]);
+      console.log('next level', page);
+      console.log('next level', data);
       winSound.pause();
       winSound.currentTime = 0;
       this.setDefaultParameters();
