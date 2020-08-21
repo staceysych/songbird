@@ -8,6 +8,7 @@ import {
   MAX_ROUND_SCORE,
   MAX_SCORE,
   FINAL_SONG_URL,
+  START_SONG_URL,
 } from '../../utils/constants';
 import Header from '../header/header';
 import spellData from '../../data/data';
@@ -17,11 +18,13 @@ import Loader from '../loader/loader';
 import QuestionField from '../question-field/question-field';
 import MainField from '../main-field/main-field';
 import FinalPage from '../final-page/final-page';
+import StartPage from '../start-page/start-page';
 
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
+      isStartPage: true,
       page: 0,
       loading: true,
       data: spellData,
@@ -37,11 +40,17 @@ export default class App extends Component {
       winSound: new Audio(WIN_SOUND_URL),
       errorSound: new Audio(ERROR_SOUND_URL),
       finalSong: new Audio(FINAL_SONG_URL),
+      startSong: new Audio(START_SONG_URL),
     };
   }
 
   componentDidMount() {
-    this.startGame();
+    this.playStartAudio();
+  }
+
+  playStartAudio = () => {
+    const { startSong } = this.state;
+    startSong.play();
   }
 
   startGame = () => {
@@ -237,6 +246,15 @@ export default class App extends Component {
     finalSong.currentTime = 0;
   }
 
+  onStartGameClick = () => {
+    const { startSong } = this.state;
+    this.startGame();
+    startSong.pause();
+    this.setState({
+      isStartPage: false,
+    });
+  }
+
   render() {
     const {
       warmUpArr,
@@ -250,12 +268,13 @@ export default class App extends Component {
       page,
       data,
       maxScore,
+      isStartPage,
     } = this.state;
     const loader = loading ? <Loader /> : null;
     const dataArray = page === 0 ? warmUpArr : data[page - 1];
     const finalPageNum = page === 6;
 
-    const headerComponents = finalPageNum ? null : (
+    const headerComponents = finalPageNum || isStartPage ? null : (
       <>
         <Header filter={filter} score={score} />
         <QuestionField
@@ -265,7 +284,7 @@ export default class App extends Component {
       </>
     );
 
-    const mainFieldComponents = finalPageNum ? null : (
+    const mainFieldComponents = finalPageNum || isStartPage ? null : (
       <MainField
         data={dataArray}
         currentSpell={currentSpell}
@@ -281,10 +300,13 @@ export default class App extends Component {
       ? <FinalPage score={score} maxScore={maxScore} startOver={this.startOver} />
       : null;
 
+    const startPage = isStartPage ? <StartPage onStartGameClick={this.onStartGameClick} /> : null;
+
     return (
       <>
         {loader}
         <div className="container">
+          {startPage}
           {Object.keys(currentSpell).length && headerComponents}
           {warmUpArr.length && Object.keys(currentSpell).length && mainFieldComponents}
           {finalPage}
