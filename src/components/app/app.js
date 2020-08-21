@@ -41,6 +41,10 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    this.startGame();
+  }
+
+  startGame = () => {
     const { data } = this.state;
     const warmUpArr = this.generateWarmUp(data);
     const currentSpell = this.generateRandomSpell(warmUpArr);
@@ -203,10 +207,6 @@ export default class App extends Component {
   onNextLevelClick = () => {
     const { data, page, finalSong, winSound } = this.state;
     if (page < 5) {
-      console.log('next level', page);
-      console.log(data[page]);
-      console.log('next level', page);
-      console.log('next level', data);
       winSound.pause();
       winSound.currentTime = 0;
       this.setDefaultParameters();
@@ -222,6 +222,19 @@ export default class App extends Component {
         page: page + 1,
       }));
     }
+  }
+
+  startOver = () => {
+    const { finalSong } = this.state;
+    this.setDefaultParameters();
+    this.startGame();
+    this.setState({
+        page: 0,
+        filter: 'warm-up',
+        score: 0,
+    });
+    finalSong.pause();
+    finalSong.currentTime = 0;
   }
 
   render() {
@@ -264,15 +277,17 @@ export default class App extends Component {
       />
     );
 
-    const finalPage = finalPageNum ? <FinalPage score={score} maxScore={maxScore} /> : null;
+    const finalPage = finalPageNum
+      ? <FinalPage score={score} maxScore={maxScore} startOver={this.startOver} />
+      : null;
 
     return (
       <>
         {loader}
         <div className="container">
-          {finalPage}
           {Object.keys(currentSpell).length && headerComponents}
           {warmUpArr.length && Object.keys(currentSpell).length && mainFieldComponents}
+          {finalPage}
         </div>
       </>
     );

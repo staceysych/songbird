@@ -9,7 +9,7 @@ import {
   PLAY_AGAIN_TEXT,
 } from '../../utils/constants';
 
-const FinalPage = ({ score, maxScore }) => {
+const FinalPage = ({ score, maxScore, startOver }) => {
   const isMaxScore = score === maxScore;
   const congratsImage = isMaxScore ? allClap : harryClapGif;
   const congratsText = isMaxScore ? TOTAL_WIN_TEXT : WIN_TEXT;
@@ -21,7 +21,9 @@ const FinalPage = ({ score, maxScore }) => {
         {`Твои очки: ${score} / ${maxScore}`}
       </span>
       <img alt="gif" className="final-gif" src={congratsImage} />
-      <button className="play-again btn btn-secondary">{PLAY_AGAIN_TEXT}</button>
+      <button type="button" className="play-again btn btn-secondary" onClick={startOver}>
+        {PLAY_AGAIN_TEXT}
+      </button>
     </div>
   );
 };
@@ -29,6 +31,7 @@ const FinalPage = ({ score, maxScore }) => {
 FinalPage.propTypes = {
     score: PropTypes.number.isRequired,
     maxScore: PropTypes.number.isRequired,
+    startOver: PropTypes.func.isRequired,
 };
 
 export default FinalPage;
