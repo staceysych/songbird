@@ -98,12 +98,12 @@ export default class Player extends Component {
   onUpdate = () => {
     const { audio, isCorrect } = this.state;
     this.updatePosition(audio);
-      this.updateCurrentTime(audio);
-      this.onAudioFinish(audio);
+    this.updateCurrentTime(audio);
+    this.onAudioFinish(audio);
 
-      if (!isCorrect) {
-        this.pauseAudioIfIsCorrectFound(audio);
-      }
+    if (!isCorrect) {
+      this.pauseAudioIfIsCorrectFound(audio);
+    }
   }
 
   onTimeUpdate = () => {

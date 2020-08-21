@@ -17,6 +17,9 @@ const QUESTION_ARRAY = [
   { name: 'L-P', label: 'L - P' },
   { name: 'P-W', label: 'P - W' },
 ];
+const WIN_TEXT = 'Поздравляем, ты справился(лась) со всеми заклинаниями! Ты на правильном пути к становлению великим волшебником!';
+const TOTAL_WIN_TEXT = 'Bloody hell! Ты просто мастер заклинаний, гордость нашей школы магии и волшебства!';
+const PLAY_AGAIN_TEXT = 'Play again';
 const WIN_SOUND_URL = 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/win.mp3';
 const ERROR_SOUND_URL = 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/error.mp3';
 
@@ -33,4 +36,7 @@ export {
   WIN_SOUND_URL,
   ERROR_SOUND_URL,
   BUTTON_TEXT,
+  WIN_TEXT,
+  TOTAL_WIN_TEXT,
+  PLAY_AGAIN_TEXT,
 };

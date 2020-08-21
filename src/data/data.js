@@ -86,7 +86,7 @@ const spellsData = [
       id: 2,
       name: 'Bombarda Maxima',
       pronunciation: 'BOM-bar-dah MAX-ih-mah',
-      shortDescription: 'Вызывает больщой взрыв',
+      shortDescription: 'Вызывает большой взрыв',
       descriptionRu: 'Создает большой взрыв, способный снести целые стены. Более продвинутая и более мощная форма взрывающегося заклинания.',
       descriptionEng: 'Creates a large explosion capable of removing entire walls. A more advanced and more powerful form of the Exploding Charm.',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/6/66/Bombarda_Maxima_2.gif/revision/latest?cb=20110816173323',

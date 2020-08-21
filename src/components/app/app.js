@@ -13,19 +13,20 @@ import shuffleArray from '../../utils/shuffle-array';
 import Loader from '../loader/loader';
 import QuestionField from '../question-field/question-field';
 import MainField from '../main-field/main-field';
+import FinalPage from '../final-page/final-page';
 
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      page: 0,
+      page: 6,
       loading: true,
       data: spellData,
       filter: QUESTION_ARRAY[0].name,
       warmUpArr: [],
       currentSpell: {},
-      score: 0,
-      maxScore: 72,
+      score: 36,
+      maxScore: 36,
       maxRoundScore: 6,
       isCorrectFound: false,
       clickedSpellObject: {},
@@ -196,13 +197,22 @@ export default class App extends Component {
 
   onNextLevelClick = () => {
     const { data, page } = this.state;
-    this.setDefaultParameters();
-    this.setDefaultPropInObject(data[page]);
-    this.setState(() => ({
-      page: page + 1,
-      currentSpell: this.generateRandomSpell(data[page]),
-      filter: QUESTION_ARRAY[page + 1].name,
-    }));
+    if (page < 5) {
+      console.log('next level', page);
+      console.log(data[page]);
+
+      this.setDefaultParameters();
+      this.setDefaultPropInObject(data[page]);
+      this.setState(() => ({
+        page: page + 1,
+        currentSpell: this.generateRandomSpell(data[page]),
+        filter: QUESTION_ARRAY[page + 1].name,
+      }));
+    } else {
+      this.setState(() => ({
+        page: page + 1,
+      }));
+    }
   }
 
   render() {
@@ -217,12 +227,14 @@ export default class App extends Component {
       isGameOn,
       page,
       data,
+      maxScore,
     } = this.state;
     const loader = loading ? <Loader /> : null;
 
     const dataArray = page === 0 ? warmUpArr : data[page - 1];
+    const finalPageNum = page === 6;
 
-    const headerComponents = (
+    const headerComponents = finalPageNum ? null : (
       <>
         <Header filter={filter} score={score} />
         <QuestionField
@@ -232,7 +244,7 @@ export default class App extends Component {
       </>
     );
 
-    const mainFieldComponents = (
+    const mainFieldComponents = finalPageNum ? null : (
       <MainField
         data={dataArray}
         currentSpell={currentSpell}
@@ -244,10 +256,13 @@ export default class App extends Component {
       />
     );
 
+    const finalPage = finalPageNum ? <FinalPage score={score} maxScore={maxScore} /> : null;
+
     return (
       <>
         {loader}
         <div className="container">
+          {finalPage}
           {Object.keys(currentSpell).length && headerComponents}
           {warmUpArr.length && Object.keys(currentSpell).length && mainFieldComponents}
         </div>

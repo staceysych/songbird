@@ -1,0 +1,30 @@
+.final-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.final-title {
+    margin: 20px 0 20px 0;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.final-score {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.play-again {
+    margin-top: 20px;
+    width: 20%;
+    background-color: $questionListColor;
+    outline: none;
+    transition: all ease-out .3s;
+    &:hover {
+        background-color: $main-color;
+        transform: scale(1.1);
+        border: 1px solid $text-color;
+    }
+}
