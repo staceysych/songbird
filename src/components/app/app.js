@@ -7,6 +7,7 @@ import {
   QUESTION_ARRAY,
   MAX_ROUND_SCORE,
   MAX_SCORE,
+  FINAL_SONG_URL,
 } from '../../utils/constants';
 import Header from '../header/header';
 import spellData from '../../data/data';
@@ -35,6 +36,7 @@ export default class App extends Component {
       isGameOn: false,
       winSound: new Audio(WIN_SOUND_URL),
       errorSound: new Audio(ERROR_SOUND_URL),
+      finalSong: new Audio(FINAL_SONG_URL),
     };
   }
 
@@ -198,11 +200,12 @@ export default class App extends Component {
   }
 
   onNextLevelClick = () => {
-    const { data, page } = this.state;
+    const { data, page, finalSong, winSound } = this.state;
     if (page < 5) {
       console.log('next level', page);
       console.log(data[page]);
-
+      winSound.pause();
+      winSound.currentTime = 0;
       this.setDefaultParameters();
       this.setDefaultPropInObject(data[page]);
       this.setState(() => ({
@@ -211,6 +214,7 @@ export default class App extends Component {
         filter: QUESTION_ARRAY[page + 1].name,
       }));
     } else {
+      finalSong.play();
       this.setState(() => ({
         page: page + 1,
       }));

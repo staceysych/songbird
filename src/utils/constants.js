@@ -24,6 +24,8 @@ const TOTAL_WIN_TEXT = 'Bloody hell! Ты просто мастер заклин
 const PLAY_AGAIN_TEXT = 'Play again';
 const WIN_SOUND_URL = 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/win.mp3';
 const ERROR_SOUND_URL = 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/error.mp3';
+const FINAL_SONG_URL = 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/John%20Williams%20-%20End%20Credits%20(mp3cut.net).mp3';
+const START_SONG_URL = 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/John%20Williams%20-%20Prologue%20(mp3cut.net).mp3';
 
 export {
   DATA_OBJ_LENGTH,
@@ -43,4 +45,6 @@ export {
   PLAY_AGAIN_TEXT,
   MAX_SCORE,
   MAX_ROUND_SCORE,
+  FINAL_SONG_URL,
+  START_SONG_URL,
 };
