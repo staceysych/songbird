@@ -5,6 +5,8 @@ import {
   WIN_SOUND_URL,
   ERROR_SOUND_URL,
   QUESTION_ARRAY,
+  MAX_ROUND_SCORE,
+  MAX_SCORE,
 } from '../../utils/constants';
 import Header from '../header/header';
 import spellData from '../../data/data';
@@ -19,15 +21,15 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      page: 6,
+      page: 0,
       loading: true,
       data: spellData,
       filter: QUESTION_ARRAY[0].name,
       warmUpArr: [],
       currentSpell: {},
-      score: 36,
-      maxScore: 36,
-      maxRoundScore: 6,
+      score: 0,
+      maxScore: MAX_SCORE,
+      maxRoundScore: MAX_ROUND_SCORE,
       isCorrectFound: false,
       clickedSpellObject: {},
       isGameOn: false,
@@ -230,7 +232,6 @@ export default class App extends Component {
       maxScore,
     } = this.state;
     const loader = loading ? <Loader /> : null;
-
     const dataArray = page === 0 ? warmUpArr : data[page - 1];
     const finalPageNum = page === 6;
 

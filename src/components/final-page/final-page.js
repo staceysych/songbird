@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import harryClapGif from '../../assets/images/harry-clap.gif';
 import allClap from '../../assets/images/tenor.gif';
@@ -24,6 +24,11 @@ const FinalPage = ({ score, maxScore }) => {
       <button className="play-again btn btn-secondary">{PLAY_AGAIN_TEXT}</button>
     </div>
   );
+};
+
+FinalPage.propTypes = {
+    score: PropTypes.number.isRequired,
+    maxScore: PropTypes.number.isRequired,
 };
 
 export default FinalPage;
