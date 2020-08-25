@@ -48,6 +48,11 @@ export default class App extends Component {
     this.playStartAudio();
   }
 
+/*   componentDidUpdate() {
+    const { startSong } = this.state;
+    startSong.muted = false;
+  } */
+
   playStartAudio = () => {
     const { startSong } = this.state;
     startSong.play();
@@ -293,6 +298,7 @@ export default class App extends Component {
         isGameOn={isGameOn}
         isCorrectFound={isCorrectFound}
         onNextLevelClick={this.onNextLevelClick}
+        page={page}
       />
     );
 

@@ -9,15 +9,15 @@ import InitialCardText from '../initial-card-text/initial-card-text';
 export default class MainField extends Component {
   render() {
     const {
-      data, onSpellClick, clickedObj, isGameOn, isCorrectFound, onNextLevelClick,
+      data, onSpellClick, clickedObj, isGameOn, isCorrectFound, onNextLevelClick, page,
     } = this.props;
-    const birdCard = isGameOn
+    const spellCard = isGameOn
       ? (
         <SpellInfo
           clickedObj={clickedObj}
         />
       )
-      : <InitialCardText />;
+      : <InitialCardText page={page} />;
 
     return (
       <div className="row md2">
@@ -30,9 +30,7 @@ export default class MainField extends Component {
           </ul>
         </div>
         <div className="col-md-7">
-          <div className="spell-info card">
-            {birdCard}
-          </div>
+          {spellCard}
         </div>
         <NextLevelBtn
           isCorrectFound={isCorrectFound}
@@ -46,6 +44,7 @@ export default class MainField extends Component {
 MainField.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   onSpellClick: PropTypes.func.isRequired,
+  page: PropTypes.number.isRequired,
   isGameOn: PropTypes.bool.isRequired,
   isCorrectFound: PropTypes.bool.isRequired,
   onNextLevelClick: PropTypes.func.isRequired,

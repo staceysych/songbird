@@ -10,7 +10,7 @@ const SpellInfo = ({ clickedObj }) => {
   } = clickedObj;
 
   return (
-    <>
+    <div className="spell-info card">
       <div className="card-body d-flex">
         <Poster imageUrl={image} />
         <SpellFeatures
@@ -25,7 +25,7 @@ const SpellInfo = ({ clickedObj }) => {
         <br />
         {`English: ${descriptionEng}`}
       </span>
-    </>
+    </div>
   );
 };
 
