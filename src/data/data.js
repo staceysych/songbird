@@ -134,7 +134,7 @@ const spellsData = [
     },
     {
       id: 7,
-      name: 'Confringo',
+      name: 'Confundo',
       pronunciation: 'con-FUN-doh',
       shortDescription: 'Вызывает чувство замешательства',
       descriptionRu: 'Приводит жертву в замешательство и смущение.',

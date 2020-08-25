@@ -14,7 +14,6 @@ import Header from '../header/header';
 import spellData from '../../data/data';
 import randomInteger from '../../utils/random-integer';
 import shuffleArray from '../../utils/shuffle-array';
-import Loader from '../loader/loader';
 import QuestionField from '../question-field/question-field';
 import MainField from '../main-field/main-field';
 import FinalPage from '../final-page/final-page';
@@ -26,7 +25,6 @@ export default class App extends Component {
     this.state = {
       isStartPage: true,
       page: 0,
-      loading: true,
       data: spellData,
       filter: QUESTION_ARRAY[0].name,
       warmUpArr: [],
@@ -265,7 +263,6 @@ export default class App extends Component {
       warmUpArr,
       filter,
       currentSpell,
-      loading,
       score,
       isCorrectFound,
       clickedSpellObject,
@@ -275,7 +272,6 @@ export default class App extends Component {
       maxScore,
       isStartPage,
     } = this.state;
-    const loader = loading ? <Loader /> : null;
     const dataArray = page === 0 ? warmUpArr : data[page - 1];
     const finalPageNum = page === 6;
 
@@ -310,7 +306,6 @@ export default class App extends Component {
 
     return (
       <>
-        {loader}
         <div className="container">
           {startPage}
           {Object.keys(currentSpell).length && headerComponents}
