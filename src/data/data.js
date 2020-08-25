@@ -8,7 +8,7 @@ const spellsData = [
       descriptionRu: 'Вызывает объект к заклинателю. Он способен вызывать предметы, находящиеся в прямой видимости заклинателя, а также вещи вне поля зрения, вызывая объект вслух после заклинания.',
       descriptionEng: 'Summons an object towards the caster. It is able to summon objects in direct line of sight of the caster, as well as things out of view, by calling the object aloud after the incantation.',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/2/23/NewtAccio1.gif/revision/latest?cb=20190328210110',
-      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/accio.mp3',
+      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/spell-effects/Accio_Firebolt_Sound_Effect.mp3',
     },
     {
       id: 2,
@@ -18,7 +18,7 @@ const spellsData = [
       descriptionRu: 'Производит чистую, пригодную для питья струю воды из кончика палочки.',
       descriptionEng: 'Produces a clean, drinkable jet of water from the wand tip.',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/a/ad/Aguamenti.gif/revision/latest?cb=20140410203837',
-      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/aguamenti.mp3',
+      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/spell-effects/Aguamenti_Sound_Effect.mp3',
     },
     {
       id: 3,
@@ -38,7 +38,7 @@ const spellsData = [
       descriptionRu: 'Отпирает двери и другие предметы. Оно также может отпирать двери, которые были запечатаны запирающим заклинанием, хотя можно заколдовать двери, чтобы они не поддавались этому заклинанию.',
       descriptionEng: 'Unlocks doors and other objects. It can also unlock doors that have been sealed with a Locking Spell, although it is possible to bewitch doors to become unaffected by this spell.',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/0/0e/Alohomora.gif/revision/latest?cb=20140811055322',
-      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/alahomora.mp3',
+      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/spell-effects/Alohomora_Sound_Effect.mp3',
     },
     {
       id: 5,
@@ -48,7 +48,7 @@ const spellsData = [
       descriptionRu: 'Уменьшает скорость движущейся цели. Может использоваться на нескольких мишенях, а также на самих заклинателях.',
       descriptionEng: 'Decreases the velocity of a moving target. Can be used on multiple targets, as well as on the caster themselves.',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/8/81/Wandless_magic.gif/revision/latest?cb=20140818012650',
-      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/arresto%20momentum.mp3',
+      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/spell-effects/Arresto_Momentum_Sound_Effect.mp3',
     },
     {
       id: 6,
@@ -58,7 +58,7 @@ const spellsData = [
       descriptionRu: 'Поднимает заклинателя в воздух. Заклинание также работает под водой, поднимая заклинателя над поверхностью.',
       descriptionEng: 'Lifts the caster high into the air. The charm also works underwater, propelling the caster above the surface.',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/f/f0/Tumblr_lvya0rfkNa1qgt0vro8_r1_250.gif/revision/latest?cb=20140422140044',
-      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/ascendio.mp3',
+      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/spell-effects/Ascendio_Sound_Effect.mp3',
     },
     {
       id: 7,
@@ -68,7 +68,7 @@ const spellsData = [
       descriptionRu: 'Вызывает мгновенную смерть. Он сопровождается вспышкой зеленого света и резким шумом. Нет никакого известного контрзаклятия, которое могло бы защитить жертву от смерти, кроме любовной жертвы.',
       descriptionEng: 'Causes instantaneous death. It is accompanied by a flash of green light and a rushing noise. There is no known counter-curse that can protect the victim from dying, except for a loving sacrifice.',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/7/78/Avada-Kedavra.gif/revision/latest?cb=20180412031022',
-      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/avada%20kedavra.mp3',
+      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/spell-effects/avadakedavra.mp3',
     },
   ],
   [
@@ -130,7 +130,7 @@ const spellsData = [
       descriptionRu: 'Причиняет сильную боль получателю проклятия. Это проклятие не причиняет физического вреда жертве, но в крайних случаях может свести ее с ума.',
       descriptionEng: 'Inflicts intense pain on the recipient of the curse. This curse does not physically harm the victim, but may in extreme cases drive them insane.',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/2/23/Crucio.gif/revision/latest?cb=20111112230349',
-      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/crusio.mp3',
+      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/spell-effects/Crucio_Sound_Effect.mp3',
     },
     {
       id: 7,
@@ -162,7 +162,7 @@ const spellsData = [
       descriptionRu: 'Отбрасывает жертву назад.',
       descriptionEng: 'Throws the victim backward, similarly to being thrown.',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/7/7f/Everte_Statum.gif/revision/latest?cb=20190402151706',
-      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/everte%20statum.mp3',
+      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/spell-effects/Everte_Statum_Sound_Effect.mp3',
     },
     {
       id: 3,
@@ -172,7 +172,7 @@ const spellsData = [
       descriptionRu: 'Этот заклинание является очень мощным и продвинутым защитным заклинанием, которое вызовет дух-хранитель положительных эмоций для защиты от темных существ; он также может посылать сообщения другим ведьмам или волшебникам. Патронус принимает форму животного, уникальную для каждого человека, который его бросает. ',
       descriptionEng: 'This charm is a highly powerful and advanced protective spell which will conjure a spirit guardian of their positive emotions to defend against dark creatures; it can also send messages to other witches or wizards. The Patronus takes the form of an animal, unique to each person who casts it. ',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/1/11/Patronus2.gif/revision/latest?cb=20111009191216',
-      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/potronus.mp3',
+      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/spell-effects/Expecto_Patronum_Sound_Effect.mp3',
     },
     {
       id: 4,
@@ -182,7 +182,7 @@ const spellsData = [
       descriptionRu: 'Заставляет все, что держит противник, вылететь из его рук.',
       descriptionEng: ' Forces whatever an opponent is holding to fly out of their hand.',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/6/67/Snape_disarms_Lockhart.gif/revision/latest?cb=20190402120234',
-      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/%D1%8D%D0%BA%D1%81%D0%BF%D0%B5%D0%BB%D0%BA%D0%B0%D1%80%D0%BC%D1%83%D1%81.mp3',
+      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/spell-effects/Expelliarmus_Sound_Effect.mp3',
     },
     {
       id: 5,
@@ -202,7 +202,7 @@ const spellsData = [
       descriptionRu: 'Обездвиживает и останавливает действия цели. Он действует как на живые, так и на неодушевленные предметы.',
       descriptionEng: 'Immobilises and stops the actions of the target. It works both on living and inanimate things.',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/c/c1/Immobulus.gif/revision/latest?cb=20090622140624',
-      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/immobulas.mp3',
+      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/spell-effects/Immobilus_Sound_Effect.mp3',
     },
     {
       id: 7,
@@ -212,7 +212,7 @@ const spellsData = [
       descriptionRu: 'Связывает цель магическими веревками',
       descriptionEng: 'Ties up the target with ropes conjured from thin air.',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/0/05/Incarcerous.gif/revision/latest?cb=20160822065707',
-      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/incarcerous.mp3',
+      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/spell-effects/Incarcerous_Sound_Effect.mp3',
     },
   ],
   [
@@ -224,7 +224,7 @@ const spellsData = [
       descriptionRu: 'Позволяет заклинателю проникнуть в сознание жертвы, позволяя ему увидеть воспоминания, мысли и эмоции жертвы.',
       descriptionEng: 'Allows the caster to delve into the mind of the victim, allowing the caster to see the memories, thoughts, and emotions of the victim.',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/b/bc/Legilimency.gif/revision/latest?cb=20160730024521',
-      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/legilimens.mp3',
+      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/spell-effects/Legilimens_Sound_Effect.mp3',
     },
     {
       id: 2,
@@ -254,7 +254,7 @@ const spellsData = [
       descriptionRu: 'Исправляет неисправности в очках',
       descriptionEng: 'Mends eyeglasses.',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/6/69/Oculus_Reparo_GIF.gif/revision/latest?cb=20140621012110',
-      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/oculus.mp3',
+      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/spell-effects/Reparo_Sound_Effect.mp3',
     },
     {
       id: 5,
@@ -264,7 +264,7 @@ const spellsData = [
       descriptionRu: 'Стирает воспоминания',
       descriptionEng: 'Erases specific memories.',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/a/a2/Tumblr_mxadblpgUv1rwhxhro5_r1_250.gif/revision/latest?cb=20140622032247',
-      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/obliviate.mp3',
+      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/spell-effects/Obliviate.mp3',
     },
     {
       id: 6,
@@ -274,17 +274,17 @@ const spellsData = [
       descriptionRu: 'Заставляет объекты атаковать жертву.',
       descriptionEng: 'Causes targeted objects to attack a victim. It is particularly effective in conjunction with the Bird-Conjuring Charm.',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/4/46/Undesirable_Number_One_posters.gif/revision/latest?cb=20110825093818',
-      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/oppugno.mp3',
+      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/spell-effects/Oppugno_Sound_Effect.mp3',
     },
     {
       id: 7,
-      name: 'Petrificus Totalus ',
+      name: 'Petrificus Totalus',
       pronunciation: 'pe-TRI-fi-cus to-TAH-lus',
       shortDescription: 'Обездвижить',
       descriptionRu: 'Используется, чтобы временно связать тело жертвы в положение, очень похожем на положение солдата по стойке смирно; жертва обычно падает на землю.',
       descriptionEng: 'Used to temporarily bind the victims body in a position much like that of a soldier at attention; the victim will usually fall to the ground.',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/6/6e/HermionePetrificusTotalus.gif/revision/latest?cb=20190402133139',
-      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/patrificus.mp3',
+      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/spell-effects/Petrificus_Totalus_Sound_Effect.mp3',
     },
   ],
   [
@@ -306,7 +306,7 @@ const spellsData = [
       descriptionRu: 'Создает невидимый щит, который отражает удары заклинаний и блокирует вход',
       descriptionEng: 'Invisible shield that reflects spells and blocks physical entities.',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/7/78/DH2_Kingsley_Shacklebolt_Protego.gif/revision/latest?cb=20110430124100',
-      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/protego.mp3',
+      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/spell-effects/Protego_Totalum_Sound_Effect.mp3',
     },
     {
       id: 3,
@@ -316,7 +316,7 @@ const spellsData = [
       descriptionRu: 'Заклинание, используемое при борьбе с боггартом, "Риддикулус" заставляет боггарта принять вид объекта, на котором фокусируется заклинатель. Наилучших результатов можно добиться, если заклинатель сосредоточится на чем-то юмористическом, с желанием, чтобы смех ослабил домового',
       descriptionEng: 'A spell used when fighting a Boggart, "Riddikulus" forces the Boggart to take the appearance of an object the caster is focusing on. Best results can be achieved if the caster is focusing on something humorous, with the desire that laughter will weaken the Boggart',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/c/c3/Neville_Riddikulus.gif/revision/latest?cb=20190402102647',
-      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/rediculus.mp3',
+      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/spell-effects/Riddikulus_Sound_Effect.mp3',
     },
     {
       id: 4,
@@ -326,7 +326,7 @@ const spellsData = [
       descriptionRu: 'Разрывает мишень, как будто они были "разрублены мечом".- Впоследствии цель может легко истечь кровью от полученных ран. Это проклятие было придумано Северусом Снейпом, чтобы быть использованным против его личных врагов.',
       descriptionEng: 'Lacerates the target, as if they have been "slashed by a sword." Subsequently, the target can easily bleed to death from the wounds. This curse was invented by Severus Snape, to be used against his personal enemies.',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/3/3a/Sectumempra_Curse.gif/revision/latest?cb=20151211212618',
-      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/sectusempra2%20(online-audio-converter.com).mp3',
+      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/spell-effects/Sectumsempra_Sound_Effect.mp3',
     },
     {
       id: 5,
@@ -346,7 +346,7 @@ const spellsData = [
       descriptionRu: 'Превращение предметов в бокалы с водой',
       descriptionEng: 'Turn animals to water goblets',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/e/e4/COS_Vera_Verto_demo.gif/revision/latest?cb=20120814192903',
-      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/vero%20verto.mp3',
+      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/spell-effects/Fera_Verto_Sound_Effect.mp3',
     },
     {
       id: 7,
@@ -356,7 +356,7 @@ const spellsData = [
       descriptionRu: 'Заставляет объекты летать или левитировать',
       descriptionEng: 'Makes objects fly, or levitate.',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/a/a1/PS_Wingardium_Leviosa_feather.gif/revision/latest?cb=20140407141259',
-      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/leviosa.mp3',
+      audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/spell-effects/Wingardium_Leviosa_Sound_Effect.mp3',
     },
   ],
 ];
