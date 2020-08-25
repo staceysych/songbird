@@ -27,7 +27,26 @@
   background: black;
   border-radius: 20%;
   opacity: .6;
-  animation: title 2s ease-out;
+
+  transition: all ease-out 1s;
+  animation: title 2s ease-out, titleMedia 2s ease-out forwards;
+
+  @media (max-width:768px) {
+    @keyframes titleMedia {
+      0% {
+        width: 0;
+        height: 0;
+
+        font-size: 0;
+      }
+      100% {
+        width: 90%;
+        height: 60%;
+
+        font-size: 1.7rem;
+      }
+    }
+  }
 }
 
 @keyframes title {
@@ -47,15 +66,15 @@
 
 @keyframes button {
   0% {
-    transform: none;
-    background: $questionListColor
+    background: $questionListColor;
+    transform: none;;
   }
   50% {
-    background: $hover-color
+    background: $hover-color;
   }
   100% {
-    transform: scale(1.2);
-    background: $questionListColor
+    background: $questionListColor;
+    transform: scale(1.2);;
   }
 }
 
@@ -63,5 +82,13 @@
   width: 30%;
 
   cursor: url("../assets/images/cursor.png"), auto !important;
-  animation: button 1s ease-out infinite alternate 2s;
+
+  animation: button 1s ease-out infinite alternate 2s, buttonMedia 1s ease-out forwards;
+  @media (max-width:768px) {
+    @keyframes buttonMedia {
+      100% {
+        width: 80%;
+      }
+    }
+  }
 }

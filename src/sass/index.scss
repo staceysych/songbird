@@ -1,6 +1,7 @@
 body {
     cursor: url('../assets/images/cursor.png'), auto;
 }
+@import './media.scss';
 @import './constants.scss';
 @import '../components/app/app.scss';
 @import '../components/loader/loader.scss';
