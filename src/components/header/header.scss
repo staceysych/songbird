@@ -8,6 +8,10 @@
 
   font-size: 4rem;
   font-family: DreamWood;
+
+  @include media-mobile {
+    font-size: 3rem;
+  }
 }
 
 .logo-colored {
@@ -22,6 +26,10 @@
 .header-top {
   justify-content: space-between;
   align-items: center;
+
+  @include media-mobile {
+    flex-direction: column;
+  }
 }
 
 .score-box {
@@ -31,5 +39,6 @@
 
 .score {
   margin-left: .5rem;
+
   font-family: Lato;
 }

@@ -4,6 +4,13 @@
   padding: 1rem;
 
   border: 1px solid $border-color;
+
+  @include media-tablet-big {
+    margin-top: 10px;
+  }
+  @include media-mobile {
+    height: 100%;
+  }
 }
 
 .spell-info .poster {
@@ -15,13 +22,19 @@
 }
 
 .card-body {
-  padding: 0;
   max-height: 160px;
+  padding: 0;
+
+  @include media-mobile {
+    flex-direction: column;
+    max-height: 100%;
+  }
 }
 
 .spell-description {
-  font-weight: 300;
-  margin-top: 10px;
   max-height: 130px;
+  margin-top: 10px;
   overflow: auto;
+
+  font-weight: 300;
 }

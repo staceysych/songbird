@@ -24,6 +24,10 @@
   opacity: 0;
 
   animation: opacityFrame 1s ease-out 1s forwards;
+
+  @include media-mobile {
+    font-size: 1.2rem;
+  }
 }
 
 @keyframes opacityFrame {
@@ -38,30 +42,43 @@
 .final-score {
   margin-bottom: 20px;
   padding: 10px;
-  opacity: 0;
 
   font-size: 2rem;
+
   border-radius: 20px;
+  opacity: 0;
 
   animation: opacityFrame 2s ease-out 2s forwards;
+
+  @include media-mobile {
+    font-size: 1.5rem;
+  }
 }
 
 .final-gif {
   opacity: 0;
 
   animation: opacityFrame 1s ease-out 1s forwards;
+
+  @include media-mobile {
+    width: 90%;
+  }
 }
 
 .play-again {
   width: 20%;
   margin-top: 20px;
-  opacity: 0;
 
   background-color: $questionListColor;
   outline: none;
+  opacity: 0;
 
   transition: all ease-out .3s;
   animation: opacityFrame 1s ease-out 2s forwards, startAgain 2s ease-out infinite alternate 3s forwards;
+
+  @include media-mobile {
+    width: 60%;
+  }
   &:hover {
     background-color: $main-color;
     border: 1px solid $text-color;
