@@ -18,7 +18,9 @@ export default class QuestionField extends Component {
   }
 
   render() {
-    const { currentSpell, isCorrectFound } = this.props;
+    const {
+      currentSpell, isCorrectFound, isLoading, onImageLoaded,
+    } = this.props;
     const { shortDescription, audio, image } = currentSpell;
     const hiddenDescription = this.generateHiddenDescription(currentSpell);
     const description = isCorrectFound ? shortDescription : hiddenDescription;
@@ -27,8 +29,8 @@ export default class QuestionField extends Component {
     const player = <Player audioUrl={audio} key="main" isCorrectFound={isCorrectFound} />;
 
     return (
-      <div className="question-field jumbotron rounded d-flex">
-        <Poster imageUrl={imageUrl} />
+      <div className="question-field jumbotron rounded d-flex" style={isLoading ? { display: 'none' } : {}}>
+        <Poster imageUrl={imageUrl} onImageLoaded={onImageLoaded} />
         <div className="question-box">
           <ul className="list-group list-group-flush">
             <li className="list-group-item">
@@ -56,4 +58,6 @@ QuestionField.propTypes = {
     audio: PropTypes.string,
   }).isRequired,
   isCorrectFound: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  onImageLoaded: PropTypes.func.isRequired,
 };

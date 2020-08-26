@@ -9,18 +9,24 @@ import {
   PLAY_AGAIN_TEXT,
 } from '../../utils/constants';
 
-const FinalPage = ({ score, maxScore, startOver }) => {
+const FinalPage = ({
+  score,
+  maxScore,
+  startOver,
+  isLoading,
+  onImageLoaded,
+}) => {
   const isMaxScore = score === maxScore;
   const congratsImage = isMaxScore ? allClap : harryClapGif;
   const congratsText = isMaxScore ? TOTAL_WIN_TEXT : WIN_TEXT;
 
   return (
-    <div className="final-page">
+    <div className="final-page" style={isLoading ? { display: 'none' } : {}}>
       <h2 className="final-title">{congratsText}</h2>
       <span className="final-score">
         {`Твои очки: ${score} / ${maxScore}`}
       </span>
-      <img alt="gif" className="final-gif" src={congratsImage} />
+      <img alt="gif" className="final-gif" src={congratsImage} onLoad={onImageLoaded} />
       <button type="button" className="play-again btn btn-secondary" onClick={startOver}>
         {PLAY_AGAIN_TEXT}
       </button>
@@ -32,6 +38,8 @@ FinalPage.propTypes = {
   score: PropTypes.number.isRequired,
   maxScore: PropTypes.number.isRequired,
   startOver: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  onImageLoaded: PropTypes.func.isRequired,
 };
 
 export default FinalPage;

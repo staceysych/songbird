@@ -18,12 +18,14 @@ import QuestionField from '../question-field/question-field';
 import MainField from '../main-field/main-field';
 import FinalPage from '../final-page/final-page';
 import StartPage from '../start-page/start-page';
+import Loader from '../loader/loader';
 
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
       isStartPage: true,
+      isLoading: true,
       page: 0,
       isMuted: true,
       data: spellData,
@@ -229,6 +231,7 @@ export default class App extends Component {
       finalSong.play();
       this.setState(() => ({
         page: page + 1,
+        isLoading: true,
       }));
     }
   }
@@ -252,6 +255,13 @@ export default class App extends Component {
     startSong.pause();
     this.setState({
       isStartPage: false,
+      isLoading: true,
+    });
+  }
+
+  onImageLoaded = () => {
+    this.setState({
+      isLoading: false,
     });
   }
 
@@ -270,6 +280,7 @@ export default class App extends Component {
       isStartPage,
       isMuted,
       startSong,
+      isLoading,
     } = this.state;
     const dataArray = page === 0 ? warmUpArr : data[page - 1];
     const finalPageNum = page === 6;
@@ -280,6 +291,8 @@ export default class App extends Component {
         <QuestionField
           currentSpell={currentSpell}
           isCorrectFound={isCorrectFound}
+          isLoading={isLoading}
+          onImageLoaded={this.onImageLoaded}
         />
       </>
     );
@@ -298,7 +311,15 @@ export default class App extends Component {
     );
 
     const finalPage = finalPageNum
-      ? <FinalPage score={score} maxScore={maxScore} startOver={this.startOver} />
+      ? (
+        <FinalPage
+          score={score}
+          maxScore={maxScore}
+          startOver={this.startOver}
+          isLoading={isLoading}
+          onImageLoaded={this.onImageLoaded}
+        />
+      )
       : null;
 
     const startPage = isStartPage
@@ -308,19 +329,22 @@ export default class App extends Component {
           isMuted={isMuted}
           onStartVolumeClick={this.onStartVolumeClick}
           startSong={startSong}
+          isLoading={isLoading}
+          onImageLoaded={this.onImageLoaded}
         />
       )
       : null;
 
+    const spinner = isLoading ? <Loader /> : null;
+
     return (
-      <>
-        <div className="container">
-          {startPage}
-          {Object.keys(currentSpell).length && headerComponents}
-          {warmUpArr.length && Object.keys(currentSpell).length && mainFieldComponents}
-          {finalPage}
-        </div>
-      </>
+      <div className="container">
+        {spinner}
+        {startPage}
+        {Object.keys(currentSpell).length && headerComponents}
+        {warmUpArr.length && Object.keys(currentSpell).length && mainFieldComponents}
+        {finalPage}
+      </div>
     );
   }
 }

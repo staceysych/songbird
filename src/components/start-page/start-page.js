@@ -14,6 +14,8 @@ const StartPage = ({
   isMuted,
   onStartVolumeClick,
   startSong,
+  onImageLoaded,
+  isLoading,
 }) => {
   const volume = isMuted ? mute : speaker;
 
@@ -23,9 +25,15 @@ const StartPage = ({
     startSong.pause();
   }
   return (
-    <div className="start-page">
+    <div className="start-page" style={isLoading ? { display: 'none' } : {}}>
       <div className="volume-box">
-        <img alt="volume" className="start-volume" src={volume} onClick={onStartVolumeClick} />
+        <img
+          alt="volume"
+          className="start-volume"
+          src={volume}
+          onClick={onStartVolumeClick}
+          onLoad={onImageLoaded}
+        />
       </div>
       <h2 className="start-title">{START_GAME_TEXT}</h2>
       <button
@@ -44,6 +52,8 @@ StartPage.propTypes = {
   isMuted: PropTypes.bool.isRequired,
   onStartVolumeClick: PropTypes.func.isRequired,
   startSong: PropTypes.objectOf(PropTypes.object).isRequired,
+  onImageLoaded: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default StartPage;

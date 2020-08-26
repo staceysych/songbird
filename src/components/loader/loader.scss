@@ -93,9 +93,15 @@
   transform-origin: 82.96px 32.959999999999994px;
 }
 .loadingio-spinner-spin-xuf19qrpjz8 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
   display: inline-block;
   width: 116px;
   height: 116px;
+  margin-top: -50px;
+  margin-left: -50px;
   overflow: hidden;
 
   background: none;
