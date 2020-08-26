@@ -1,9 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import { WELCOME, FIRST_PAGE, INITIAL_TEXT, BEFORE_FINAL_TEXT } from '../../utils/constants';
+import {
+  WELCOME, FIRST_PAGE, INITIAL_TEXT, BEFORE_FINAL_TEXT,
+} from '../../utils/constants';
 import professorImage from '../../assets/images/professor.png';
 
-const InitialCardText = ({page}) => {
+const InitialCardText = ({ page }) => {
   let text = '';
   if (page === 0) {
     text = WELCOME;
@@ -22,11 +25,15 @@ const InitialCardText = ({page}) => {
   }
 
   return (
-  <div className="card-text">
-    <span className="speech-bubble">{text}</span>
-    <img src={professorImage} alt="professor" className="professor-image" />
-  </div>
+    <div className="card-text">
+      <span className="speech-bubble">{text}</span>
+      <img src={professorImage} alt="professor" className="professor-image" />
+    </div>
   );
+};
+
+InitialCardText.propTypes = {
+  page: PropTypes.number.isRequired,
 };
 
 export default InitialCardText;

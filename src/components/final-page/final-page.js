@@ -29,9 +29,9 @@ const FinalPage = ({ score, maxScore, startOver }) => {
 };
 
 FinalPage.propTypes = {
-    score: PropTypes.number.isRequired,
-    maxScore: PropTypes.number.isRequired,
-    startOver: PropTypes.func.isRequired,
+  score: PropTypes.number.isRequired,
+  maxScore: PropTypes.number.isRequired,
+  startOver: PropTypes.func.isRequired,
 };
 
 export default FinalPage;

@@ -25,6 +25,7 @@ export default class App extends Component {
     this.state = {
       isStartPage: true,
       page: 0,
+      isMuted: true,
       data: spellData,
       filter: QUESTION_ARRAY[0].name,
       warmUpArr: [],
@@ -42,20 +43,6 @@ export default class App extends Component {
     };
   }
 
-  componentDidMount() {
-    this.playStartAudio();
-  }
-
-/*   componentDidUpdate() {
-    const { startSong } = this.state;
-    startSong.muted = false;
-  } */
-
-  playStartAudio = () => {
-    const { startSong } = this.state;
-    startSong.play();
-  }
-
   startGame = () => {
     const { data } = this.state;
     const warmUpArr = this.generateWarmUp(data);
@@ -63,7 +50,6 @@ export default class App extends Component {
     this.setState({
       warmUpArr,
       currentSpell,
-      loading: false,
     });
   }
 
@@ -82,10 +68,11 @@ export default class App extends Component {
     const warmUp = [];
     shuffledArray.map((arr) => warmUp.push(arr[randomInt]));
     warmUp.forEach((el) => {
-      el.isClicked = false;
-      el.isCorrect = false;
-      el.isWrong = false;
-      el.isActive = false;
+      const element = el;
+      element.isClicked = false;
+      element.isCorrect = false;
+      element.isWrong = false;
+      element.isActive = false;
     });
     return warmUp;
   };
@@ -179,8 +166,9 @@ export default class App extends Component {
       const dataArr = page === 0 ? warmUpArr : data[page - 1];
       const arrayCopy = [...dataArr];
       arrayCopy.forEach((el) => {
-        if (el.isActive) {
-          el.isActive = false;
+        const element = el;
+        if (element.isActive) {
+          element.isActive = false;
         }
       });
       const currentObj = this.getCurrentObjOnClick(arrayCopy, id);
@@ -193,15 +181,22 @@ export default class App extends Component {
   }
 
   setDefaultPropInObject = (arr) => (arr.map((el) => {
-    if (el.isClicked) {
-      el.isClicked = false;
-      el.isCorrect = false;
-      el.isWrong = false;
-      el.isActive = false;
+    const element = el;
+    if (element.isClicked) {
+      element.isClicked = false;
+      element.isCorrect = false;
+      element.isWrong = false;
+      element.isActive = false;
     }
 
     return el;
   }));
+
+  onStartVolumeClick = () => {
+    this.setState(({ isMuted }) => ({
+      isMuted: !isMuted,
+    }));
+  }
 
   onSpellClick = ({ target }) => {
     const { warmUpArr, page, data } = this.state;
@@ -217,7 +212,9 @@ export default class App extends Component {
   }
 
   onNextLevelClick = () => {
-    const { data, page, finalSong, winSound } = this.state;
+    const {
+      data, page, finalSong, winSound,
+    } = this.state;
     if (page < 5) {
       winSound.pause();
       winSound.currentTime = 0;
@@ -241,9 +238,9 @@ export default class App extends Component {
     this.setDefaultParameters();
     this.startGame();
     this.setState({
-        page: 0,
-        filter: 'warm-up',
-        score: 0,
+      page: 0,
+      filter: 'warm-up',
+      score: 0,
     });
     finalSong.pause();
     finalSong.currentTime = 0;
@@ -271,6 +268,8 @@ export default class App extends Component {
       data,
       maxScore,
       isStartPage,
+      isMuted,
+      startSong,
     } = this.state;
     const dataArray = page === 0 ? warmUpArr : data[page - 1];
     const finalPageNum = page === 6;
@@ -302,7 +301,16 @@ export default class App extends Component {
       ? <FinalPage score={score} maxScore={maxScore} startOver={this.startOver} />
       : null;
 
-    const startPage = isStartPage ? <StartPage onStartGameClick={this.onStartGameClick} /> : null;
+    const startPage = isStartPage
+      ? (
+        <StartPage
+          onStartGameClick={this.onStartGameClick}
+          isMuted={isMuted}
+          onStartVolumeClick={this.onStartVolumeClick}
+          startSong={startSong}
+        />
+      )
+      : null;
 
     return (
       <>

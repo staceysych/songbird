@@ -10,6 +10,7 @@ const Timeline = ({ playerStyle, mouseDownFunc }) => (
 
 Timeline.propTypes = {
   mouseDownFunc: PropTypes.func.isRequired,
+  playerStyle: PropTypes.objectOf(PropTypes.object).isRequired,
 };
 
 export default Timeline;
