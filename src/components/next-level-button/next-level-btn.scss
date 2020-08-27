@@ -1,19 +1,16 @@
 .next-level-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   margin: 25px 15px;
 
-  font-family: DreamWood;
-  color: #ffffff!important;
-
   background-color: #303030;
   border: 1px solid #444444;
+  outline: none;
   cursor: url("../assets/images/cursor.png"), auto !important;
 
   transition: .3s;
-
-  &:hover {
-    background-color: $hover-color;
-  }
 }
 
 .activated {

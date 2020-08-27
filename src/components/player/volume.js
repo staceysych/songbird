@@ -17,10 +17,21 @@ class Volume extends Component {
     };
   }
 
+  onDocumentClickHideVolume = ({ target }) => {
+    const { isHidden } = this.state;
+    if (!isHidden && !(target.classList.contains('slider') || target.parentElement.classList.contains('slider') || target.classList.contains('volume-controls'))) {
+      this.setState({
+        isHidden: true,
+      });
+    }
+  }
+
   onVolumeClick = () => {
     this.setState(({ isHidden }) => ({
       isHidden: !isHidden,
     }));
+
+    document.addEventListener('mousedown', this.onDocumentClickHideVolume);
   };
 
   calculateVolumePercent = (position, { target }) => {
@@ -84,6 +95,8 @@ class Volume extends Component {
       top: handleTop,
     };
 
+    const volumeControlsClassName = isHidden ? 'volume-controls' : 'volume-controls active-volume';
+
     return (
       <div className="player-volume">
         <img
@@ -92,7 +105,7 @@ class Volume extends Component {
           src={volumeImage}
           onClick={this.onVolumeClick}
         />
-        <div className="volume-controls" style={volumeControlsStyle}>
+        <div className={volumeControlsClassName} style={volumeControlsStyle}>
           <div role="button" tabIndex={0} className="slider" onMouseDown={this.onMouseDown}>
             <div className="progress" style={progressStyle} />
             <div className="player-handle volume-handle" style={handleStyle} />

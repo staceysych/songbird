@@ -8,6 +8,8 @@
   height: 100%;
 
   cursor: pointer;
+
+  object-fit: contain;
 }
 
 .player-timeline {
@@ -81,6 +83,8 @@
   width: 100%;
 
   cursor: pointer;
+
+  object-fit: contain;
 }
 
 .volume-controls {

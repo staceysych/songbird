@@ -215,7 +215,7 @@ export default class App extends Component {
 
   onNextLevelClick = () => {
     const {
-      data, page, finalSong, winSound,
+      data, page, winSound,
     } = this.state;
     if (page < 5) {
       winSound.pause();
@@ -228,7 +228,6 @@ export default class App extends Component {
         filter: QUESTION_ARRAY[page + 1].name,
       }));
     } else {
-      finalSong.play();
       this.setState(() => ({
         page: page + 1,
         isLoading: true,
@@ -281,6 +280,7 @@ export default class App extends Component {
       isMuted,
       startSong,
       isLoading,
+      finalSong,
     } = this.state;
     const dataArray = page === 0 ? warmUpArr : data[page - 1];
     const finalPageNum = page === 6;
@@ -318,6 +318,9 @@ export default class App extends Component {
           startOver={this.startOver}
           isLoading={isLoading}
           onImageLoaded={this.onImageLoaded}
+          isMuted={isMuted}
+          onStartVolumeClick={this.onStartVolumeClick}
+          finalSong={finalSong}
         />
       )
       : null;
