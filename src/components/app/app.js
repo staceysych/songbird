@@ -25,6 +25,7 @@ export default class App extends Component {
     super();
     this.state = {
       isStartPage: true,
+      lang: 'ru',
       isLoading: true,
       page: 0,
       isMuted: true,
@@ -264,6 +265,20 @@ export default class App extends Component {
     });
   }
 
+  onLangClick = () => {
+    this.setState(({ lang }) => {
+      if (lang === 'ru') {
+        return {
+          lang: 'eng',
+        };
+      } else {
+        return {
+          lang: 'ru',
+        }
+      }
+    });
+  }
+
   render() {
     const {
       warmUpArr,
@@ -281,6 +296,7 @@ export default class App extends Component {
       startSong,
       isLoading,
       finalSong,
+      lang,
     } = this.state;
     const dataArray = page === 0 ? warmUpArr : data[page - 1];
     const finalPageNum = page === 6;
@@ -334,6 +350,8 @@ export default class App extends Component {
           startSong={startSong}
           isLoading={isLoading}
           onImageLoaded={this.onImageLoaded}
+          onLangClick={this.onLangClick}
+          lang={lang}
         />
       )
       : null;

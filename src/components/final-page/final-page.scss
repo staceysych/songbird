@@ -71,7 +71,6 @@
   @include media-mobile {
     font-size: 1rem;
   }
-
   @include media-tablet {
     font-size: 1.2rem;
   }
@@ -96,6 +95,7 @@
 
   background-color: $questionListColor;
   outline: none;
+  cursor: pointer;
   opacity: 0;
 
   transition: all ease-out .3s;

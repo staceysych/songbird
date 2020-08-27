@@ -83,7 +83,7 @@
 .start-game {
   width: 30%;
 
-  cursor: url("../assets/images/cursor.png"), auto !important;
+  cursor: pointer;
 
   animation: button 1s ease-out infinite alternate 2s, buttonMedia 1s ease-out forwards;
   @media (max-width:768px) {
@@ -109,3 +109,16 @@
 
   width: 35px;
 }
+
+.lang-box {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  display: flex;
+  flex-direction: column;
+}
+
+.lang-btn {
+  background: $language-btn-color;
+}
+

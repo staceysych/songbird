@@ -16,8 +16,11 @@ const StartPage = ({
   startSong,
   onImageLoaded,
   isLoading,
+  lang,
+  onLangClick,
 }) => {
   const volume = isMuted ? mute : speaker;
+  const langText = lang === 'ru' ? 'Русский' : 'English';
 
   if (!isMuted) {
     startSong.play();
@@ -34,6 +37,9 @@ const StartPage = ({
           onClick={onStartVolumeClick}
           onLoad={onImageLoaded}
         />
+      </div>
+      <div className="lang-box">
+        <button className="lang-btn ru btn btn-secondary" onClick={onLangClick}>{langText}</button>
       </div>
       <div className="start-title"><span>{START_GAME_TEXT}</span></div>
       <button
@@ -54,6 +60,8 @@ StartPage.propTypes = {
   startSong: PropTypes.objectOf(PropTypes.object).isRequired,
   onImageLoaded: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  lang: PropTypes.string.isRequired,
+  onLangClick: PropTypes.func.isRequired,
 };
 
 export default StartPage;
