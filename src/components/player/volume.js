@@ -49,11 +49,15 @@ class Volume extends Component {
   };
 
   changeVolumePosition = (event) => {
-    const progressPositionY = event.clientY;
-    const volumePercentage = this.calculateVolumePercent(progressPositionY, event);
+    const { target } = event;
 
-    this.moveAt(volumePercentage);
-    this.changeVolume(volumePercentage);
+    if (target.classList.contains('slider') || target.parentElement.classList.contains('slider')) {
+      const progressPositionY = event.clientY;
+      const volumePercentage = this.calculateVolumePercent(progressPositionY, event);
+
+      this.moveAt(volumePercentage);
+      this.changeVolume(volumePercentage);
+    }
   };
 
   onMouseDown = (event) => {

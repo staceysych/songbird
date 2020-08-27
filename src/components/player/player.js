@@ -174,12 +174,15 @@ export default class Player extends Component {
       }
 
       changeTimeLinePosition = (event) => {
-        const progressPositionX = event.clientX;
-        const timeLinePercentage = this.calculateTimeLinePercent(progressPositionX, event);
-        this.moveAt(timeLinePercentage, event);
+        const { target } = event;
+        if (target.classList.contains('player-timeline') || target.parentElement.classList.contains('player-timeline')) {
+          const progressPositionX = event.clientX;
+          const timeLinePercentage = this.calculateTimeLinePercent(progressPositionX, event);
+          this.moveAt(timeLinePercentage, event);
 
-        if (timeLinePercentage) {
-          this.calculateCurrentTimeOnDrag(timeLinePercentage);
+          if (timeLinePercentage) {
+            this.calculateCurrentTimeOnDrag(timeLinePercentage);
+          }
         }
       };
 
