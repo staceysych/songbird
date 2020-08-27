@@ -35,7 +35,7 @@ const StartPage = ({
           onLoad={onImageLoaded}
         />
       </div>
-      <h2 className="start-title">{START_GAME_TEXT}</h2>
+      <div className="start-title"><span>{START_GAME_TEXT}</span></div>
       <button
         type="button"
         className="start-game btn btn-secondary"

@@ -35,6 +35,7 @@ export default class MainField extends Component {
         <NextLevelBtn
           isCorrectFound={isCorrectFound}
           onNextLevelClick={onNextLevelClick}
+          page={page}
         />
       </div>
     );

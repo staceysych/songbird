@@ -8,13 +8,14 @@ const LOADER_DELAY = 1000;
 const MAX_SCORE = 36;
 const MAX_ROUND_SCORE = 6;
 const BUTTON_TEXT = 'Следующая группа заклинаний';
+const FINISH_TEXT = 'Закончить';
 const QUESTION_ARRAY = [
   { name: 'warm-up', label: 'Разминка' },
-  { name: 'A', label: 'A-spells' },
-  { name: 'B-C', label: 'B - C' },
-  { name: 'D-I', label: 'D - I' },
-  { name: 'L-P', label: 'L - P' },
-  { name: 'P-W', label: 'P - W' },
+  { name: 'A', label: 'Заклинания на А' },
+  { name: 'B-C', label: 'от B до C' },
+  { name: 'D-I', label: 'от D до I' },
+  { name: 'L-P', label: 'от L до P' },
+  { name: 'P-W', label: 'от P до W' },
 ];
 const WIN_TEXT = 'Поздравляем, ты справился со всеми заклинаниями! Ты на правильном пути к становлению великим волшебником!';
 const TOTAL_WIN_TEXT = 'You are brilliant! Ты просто мастер заклинаний, гордость нашей школы магии и волшебства!';
@@ -56,4 +57,5 @@ export {
   FIRST_PAGE,
   INITIAL_TEXT,
   BEFORE_FINAL_TEXT,
+  FINISH_TEXT,
 };

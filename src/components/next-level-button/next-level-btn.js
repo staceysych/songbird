@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { BUTTON_TEXT } from '../../utils/constants';
+import { BUTTON_TEXT, FINISH_TEXT } from '../../utils/constants';
 
-const NextLevelBtn = ({ isCorrectFound, onNextLevelClick }) => {
+const NextLevelBtn = ({ isCorrectFound, onNextLevelClick, page }) => {
+  const nextButtonText = page === 5 ? FINISH_TEXT : BUTTON_TEXT;
   let buttonClass = 'next-level-btn btn';
 
   if (isCorrectFound) {
@@ -20,7 +21,7 @@ const NextLevelBtn = ({ isCorrectFound, onNextLevelClick }) => {
       onClick={onNextLevelClick}
       style={buttonStyle}
     >
-      {BUTTON_TEXT}
+      {nextButtonText}
     </button>
   );
 };
@@ -28,6 +29,7 @@ const NextLevelBtn = ({ isCorrectFound, onNextLevelClick }) => {
 NextLevelBtn.propTypes = {
   isCorrectFound: PropTypes.bool.isRequired,
   onNextLevelClick: PropTypes.func.isRequired,
+  page: PropTypes.number.isRequired,
 };
 
 export default NextLevelBtn;
