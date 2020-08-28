@@ -355,7 +355,7 @@ const spellsData = [
       pronunciation: 'sec-tum-SEMP-rah',
       shortDescription: 'Нанесение ран "мечом"',
       shortDescriptionEng: 'Lacerates the target',
-      descriptionRu: 'Разрывает мишень, как будто они были "разрублены мечом".- Впоследствии цель может легко истечь кровью от полученных ран. Это проклятие было придумано Северусом Снейпом, чтобы быть использованным против его личных врагов.',
+      descriptionRu: 'Разрывает мишень, как будто они были "разрублены мечом". Впоследствии цель может легко истечь кровью от полученных ран. Это проклятие было придумано Северусом Снейпом, чтобы быть использованным против его личных врагов.',
       descriptionEng: 'Lacerates the target, as if they have been "slashed by a sword." Subsequently, the target can easily bleed to death from the wounds. This curse was invented by Severus Snape, to be used against his personal enemies.',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/3/3a/Sectumempra_Curse.gif/revision/latest?cb=20151211212618',
       audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/spell-effects/Sectumsempra_Sound_Effect.mp3',

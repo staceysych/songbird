@@ -1,6 +1,7 @@
 .professor-image {
   position: absolute;
   left: 251px;
+
   height: 100%;
 
   animation: professor 1s ease-out forwards, professorMedia 1s ease-out forwards;
@@ -59,70 +60,38 @@
 .speech-bubble {
   position: relative;
 
-  font-size: 0;
+  width: 50%;
+  height: 230px;
   padding: 0;
+  padding: 10px;
 
+  font-size: inherit;
+
+  background: $main-color;
   border-radius: .4em;
+  transform: scale(0);
 
-  animation: bubble 1s ease-out 1s forwards, bubbleMedia 1s ease-out 1s forwards, bubbleMediaMobile 1s ease-out 1s forwards ;
-  @media (max-width:992px) {
-    @keyframes bubbleMedia {
-      0% {
-        width: 0;
-        height: 0;
-        padding: 0;
+  animation: bubble 1s ease-out 1s forwards;
 
-        font-size: 0;
-      }
-      100% {
-        width: 50%;
-        height: 230px;
-        padding: 10px;
-
-        font-size: 1rem;
-
-        background: $main-color;
-      }
-    }
+  @include media-laptop-small {
+    font-size: 1.5vw;
   }
-  @media (max-width:562px) {
-    @keyframes bubbleMediaMobile {
-      0% {
-        width: 0;
-        height: 0;
-        padding: 0;
-
-        font-size: 0;
-      }
-      100% {
-        width: 55%;
-        height: 80%;
-        padding: 5px;
-
-        font-size: .8rem;
-
-        background: $main-color;
-      }
-    }
+  @include media-tablet {
+    font-size: 2.5vw;
+  }
+  @include media-mobile {
+    width: 55%;
+    height: 80%;
+    padding: 5px;
   }
 }
 
 @keyframes bubble {
   0% {
-    width: 0;
-    height: 0;
-    padding: 0;
-
-    font-size: 0;
+    transform: scale(0);
   }
   100% {
-    width: 60%;
-    height: 200px;
-    padding: 15px;
-
-    font-size: 1rem;
-
-    background: $main-color;
+    transform: scale(1);
   }
 }
 
@@ -140,14 +109,16 @@
   border: 25px solid transparent;
   border-right: 0;
   border-bottom: 0;
+  border-left-color: $main-color;
 
   animation: bubble-after 1s ease-out 1s forwards;
 }
 
 @keyframes bubble-after {
   0% {
+    transform: scale(0);
   }
   100% {
-    border-left-color: $main-color;
+    transform: scale(1);
   }
 }
