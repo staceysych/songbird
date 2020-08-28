@@ -49,9 +49,14 @@
   font-size: 1.5rem;
   font-family: "Uni Bold";
   text-align: center;
+
   opacity: 0;
 
   animation: opacityFrame 2s ease-out 1s forwards;
+
+  @include media-mobile {
+    font-size: 1rem;
+  }
 }
 
 @keyframes opacityFrame {
