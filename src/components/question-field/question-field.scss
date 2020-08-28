@@ -1,0 +1,50 @@
+.question-field {
+  margin-bottom: 25px;
+  padding: 1rem;
+
+  user-select: none;
+
+  @include media-mobile {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.question-field .poster {
+  width: 275px;
+  height: 190px;
+  margin: 0;
+
+  border-radius: 10px;
+
+  object-fit: cover;
+}
+
+.question-field .list-group-flush {
+  margin-left: 40px;
+
+  @include media-mobile {
+    margin-left: 0;
+  }
+}
+
+.question-box {
+  width: 90%;
+
+  @include media-mobile {
+    width: 100%;
+  }
+}
+
+.question-box .list-group-item:first-child {
+  width: 95%;
+
+  @include media-mobile {
+    text-align: center;
+  }
+}
+.question-box .list-group-item:last-child {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -1,0 +1,44 @@
+.spell-info {
+  width: 100%;
+  min-height: 333px;
+  padding: 1rem;
+
+  border: 1px solid $border-color;
+
+  @include media-tablet-big {
+    margin-top: 10px;
+  }
+  @include media-mobile {
+    height: 100%;
+  }
+}
+
+.spell-info .poster {
+  width: 200px;
+  height: 155px;
+  margin: 0;
+
+  border-radius: 10px;
+
+  object-fit: cover;
+}
+
+.card-body {
+  max-height: 160px;
+  padding: 0;
+
+  @include media-mobile {
+    flex-direction: column;
+    align-items: center;
+    max-height: 100%;
+  }
+}
+
+.spell-description {
+  max-height: 130px;
+  margin-top: 20px;
+  overflow: auto;
+
+  font-weight: 300;
+  font-size: 1.2rem;
+}

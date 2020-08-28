@@ -1,0 +1,20 @@
+body {
+    cursor: url('../assets/images/cursor.png') 16 16, auto;
+    height: 100vh;
+}
+@import './media.scss';
+@import './constants.scss';
+@import '../components/app/app.scss';
+@import '../components/loader/loader.scss';
+@import '../components/header/header.scss';
+@import '../components/question-list/question-list.scss';
+@import '../components/question-item/question-item.scss';
+@import '../components/question-field/question-field.scss';
+@import '../components/spell-list-item/spell-list-item.scss';
+@import '../components/spell-info/spell-info.scss';
+@import '../components/spell-info/spell-features.scss';
+@import '../components/next-level-button/next-level-btn.scss';
+@import '../components/player/player.scss';
+@import '../components/final-page/final-page.scss';
+@import '../components/start-page/start-page.scss';
+@import '../components/initial-card-text/initial-card-text.scss';

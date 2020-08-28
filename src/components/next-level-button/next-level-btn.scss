@@ -1,0 +1,18 @@
+.next-level-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 25px 15px;
+
+  background-color: #303030;
+  border: 1px solid #444444;
+  outline: none;
+  cursor: pointer;
+
+  transition: .3s;
+}
+
+.activated {
+  background-color: $hover-color;
+}

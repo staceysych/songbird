@@ -1,0 +1,32 @@
+.question-link {
+  color: $text-color;
+  text-decoration: none;
+  pointer-events: none;
+}
+
+.question-list .list-group-item {
+  display: flex;
+  flex: auto;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+
+  background-color: $questionListColor;
+  border: none;
+  border-right: dotted 1px $text-color;
+
+  transition: all ease-out .3s;
+}
+
+.question-list .list-group-item:nth-child(1) {
+  border-top-right-radius: initial;
+}
+
+.question-list .list-group-item:last-child {
+  border-right: none;
+  border-bottom-left-radius: initial;
+}
+
+.question-list .active {
+  background-color: $active-color;
+}

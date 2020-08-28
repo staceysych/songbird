@@ -1,0 +1,44 @@
+@import "../../components/fonts/fonts.scss";
+
+.logo {
+  display: flex;
+  align-items: center;
+  width: 200px;
+  height: 55px;
+
+  font-size: 4rem;
+  font-family: DreamWood;
+
+  @include media-mobile {
+    font-size: 3rem;
+  }
+}
+
+.logo-colored {
+  color: $main-color;
+}
+
+.header {
+  flex-direction: column;
+  margin-top: 1.2rem;
+}
+
+.header-top {
+  justify-content: space-between;
+  align-items: center;
+
+  @include media-mobile {
+    flex-direction: column;
+  }
+}
+
+.score-box {
+  font-size: 1.5rem;
+  font-family: DreamWood;
+}
+
+.score {
+  margin-left: .5rem;
+
+  font-family: Lato;
+}
