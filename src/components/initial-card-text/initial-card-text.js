@@ -2,26 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  WELCOME, FIRST_PAGE, INITIAL_TEXT, BEFORE_FINAL_TEXT,
+  WELCOME, FIRST_PAGE, INITIAL_TEXT, BEFORE_FINAL_TEXT, RU, ENG,
 } from '../../utils/constants';
 import professorImage from '../../assets/images/professor.png';
 
-const InitialCardText = ({ page }) => {
+const InitialCardText = ({ page, lang }) => {
   let text = '';
+  const isLangRu = lang === 'ru';
   if (page === 0) {
-    text = WELCOME;
+    text = isLangRu ? WELCOME[RU] : WELCOME[ENG];
   }
 
   if (page === 1) {
-    text = FIRST_PAGE;
+    text = isLangRu ? FIRST_PAGE[RU] : FIRST_PAGE[ENG];
   }
 
   if (page > 1 && page < 5) {
-    text = INITIAL_TEXT;
+    text = isLangRu ? INITIAL_TEXT[RU] : INITIAL_TEXT[ENG];
   }
 
   if (page === 5) {
-    text = BEFORE_FINAL_TEXT;
+    text = isLangRu ? BEFORE_FINAL_TEXT[RU] : BEFORE_FINAL_TEXT[ENG];
   }
 
   return (
@@ -34,6 +35,7 @@ const InitialCardText = ({ page }) => {
 
 InitialCardText.propTypes = {
   page: PropTypes.number.isRequired,
+  lang: PropTypes.string.isRequired,
 };
 
 export default InitialCardText;

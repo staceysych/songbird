@@ -9,23 +9,33 @@ import InitialCardText from '../initial-card-text/initial-card-text';
 export default class MainField extends Component {
   render() {
     const {
-      data, onSpellClick, clickedObj, isGameOn, isCorrectFound, onNextLevelClick, page,
+      data,
+      onSpellClick,
+      clickedObj,
+      isGameOn,
+      isCorrectFound,
+      onNextLevelClick,
+      page,
+      lang,
+      isLoading,
     } = this.props;
     const spellCard = isGameOn
       ? (
         <SpellInfo
           clickedObj={clickedObj}
+          lang={lang}
         />
       )
-      : <InitialCardText page={page} />;
+      : <InitialCardText page={page} lang={lang} />;
 
     return (
-      <div className="row md2">
+      <div className="row md2" style={isLoading ? { display: 'none' } : {}}>
         <div className="col-md-5">
           <ul className="list-group spell-list">
             <SpellListItem
               data={data}
               onSpellClick={onSpellClick}
+              lang={lang}
             />
           </ul>
         </div>
@@ -36,6 +46,7 @@ export default class MainField extends Component {
           isCorrectFound={isCorrectFound}
           onNextLevelClick={onNextLevelClick}
           page={page}
+          lang={lang}
         />
       </div>
     );
@@ -49,6 +60,8 @@ MainField.propTypes = {
   isGameOn: PropTypes.bool.isRequired,
   isCorrectFound: PropTypes.bool.isRequired,
   onNextLevelClick: PropTypes.func.isRequired,
+  lang: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   clickedObj: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,

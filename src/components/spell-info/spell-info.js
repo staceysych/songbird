@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 import SpellFeatures from './spell-features';
 import Poster from '../poster/poster';
 
-const SpellInfo = ({ clickedObj }) => {
+const SpellInfo = ({ clickedObj, lang }) => {
   const {
     name, pronunciation, descriptionRu, image, audio, descriptionEng,
   } = clickedObj;
+
+  const description = lang === 'ru' ? descriptionRu : descriptionEng;
 
   return (
     <div className="spell-info card">
@@ -20,10 +22,7 @@ const SpellInfo = ({ clickedObj }) => {
         />
       </div>
       <span className="spell-description">
-        {descriptionRu}
-        <br />
-        <br />
-        {`English: ${descriptionEng}`}
+        {description}
       </span>
     </div>
   );
@@ -40,6 +39,7 @@ SpellInfo.propTypes = {
     image: PropTypes.string,
     audio: PropTypes.string,
   }).isRequired,
+  lang: PropTypes.string.isRequired,
 };
 
 export default SpellInfo;

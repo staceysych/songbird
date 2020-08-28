@@ -271,11 +271,11 @@ export default class App extends Component {
         return {
           lang: 'eng',
         };
-      } else {
-        return {
-          lang: 'ru',
-        }
       }
+
+      return {
+        lang: 'ru',
+      };
     });
   }
 
@@ -303,12 +303,13 @@ export default class App extends Component {
 
     const headerComponents = finalPageNum || isStartPage ? null : (
       <>
-        <Header filter={filter} score={score} />
+        <Header filter={filter} score={score} lang={lang} />
         <QuestionField
           currentSpell={currentSpell}
           isCorrectFound={isCorrectFound}
           isLoading={isLoading}
           onImageLoaded={this.onImageLoaded}
+          lang={lang}
         />
       </>
     );
@@ -323,6 +324,8 @@ export default class App extends Component {
         isCorrectFound={isCorrectFound}
         onNextLevelClick={this.onNextLevelClick}
         page={page}
+        lang={lang}
+        isLoading={isLoading}
       />
     );
 
@@ -337,6 +340,7 @@ export default class App extends Component {
           isMuted={isMuted}
           onStartVolumeClick={this.onStartVolumeClick}
           finalSong={finalSong}
+          lang={lang}
         />
       )
       : null;

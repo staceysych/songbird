@@ -6,9 +6,11 @@ import Poster from '../poster/poster';
 
 export default class QuestionField extends Component {
   generateHiddenDescription = (spell) => {
-    const { shortDescription } = spell;
+    const { lang } = this.props;
+    const { shortDescription, shortDescriptionEng } = spell;
+    const description = lang === 'ru' ? shortDescription : shortDescriptionEng;
 
-    const strLength = shortDescription.length;
+    const strLength = description.length;
     return Array(strLength).fill('*').join('');
   };
 
@@ -19,11 +21,17 @@ export default class QuestionField extends Component {
 
   render() {
     const {
-      currentSpell, isCorrectFound, isLoading, onImageLoaded,
+      currentSpell, isCorrectFound, isLoading, onImageLoaded, lang,
     } = this.props;
-    const { shortDescription, audio, image } = currentSpell;
+    const {
+      shortDescription,
+      shortDescriptionEng,
+      audio,
+      image,
+    } = currentSpell;
+    const description = lang === 'ru' ? shortDescription : shortDescriptionEng;
     const hiddenDescription = this.generateHiddenDescription(currentSpell);
-    const description = isCorrectFound ? shortDescription : hiddenDescription;
+    const descriptionText = isCorrectFound ? description : hiddenDescription;
     const imageUrl = this.getCurrentSpellImageUrl(image, isCorrectFound);
 
     const player = <Player audioUrl={audio} key="main" isCorrectFound={isCorrectFound} />;
@@ -34,7 +42,7 @@ export default class QuestionField extends Component {
         <div className="question-box">
           <ul className="list-group list-group-flush">
             <li className="list-group-item">
-              <span className="hidden-name">{description}</span>
+              <span className="hidden-name">{descriptionText}</span>
             </li>
             <li className="list-group-item">
               {player}
@@ -52,6 +60,7 @@ QuestionField.propTypes = {
     name: PropTypes.string,
     pronunciation: PropTypes.string,
     shortDescription: PropTypes.string,
+    shortDescriptionEng: PropTypes.string,
     descriptionRu: PropTypes.string,
     descriptionEng: PropTypes.string,
     image: PropTypes.string,
@@ -60,4 +69,5 @@ QuestionField.propTypes = {
   isCorrectFound: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
   onImageLoaded: PropTypes.func.isRequired,
+  lang: PropTypes.string.isRequired,
 };

@@ -5,11 +5,11 @@ import QuestionItem from '../question-item/question-item';
 
 export default class QuestionList extends Component {
   render() {
-    const { filter } = this.props;
+    const { filter, lang } = this.props;
 
     return (
       <ul className="question-list d-flex">
-        <QuestionItem filter={filter} />
+        <QuestionItem filter={filter} lang={lang} />
       </ul>
     );
   }
@@ -17,4 +17,5 @@ export default class QuestionList extends Component {
 
 QuestionList.propTypes = {
   filter: PropTypes.string.isRequired,
+  lang: PropTypes.string.isRequired,
 };

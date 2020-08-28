@@ -2,8 +2,8 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-const renderItems = (arr, onSpellClick) => arr.map(({
-  shortDescription, isClicked, isCorrect, isWrong, isActive,
+const renderItems = (arr, onSpellClick, lang) => arr.map(({
+  shortDescription, shortDescriptionEng, isClicked, isCorrect, isWrong, isActive,
 }) => {
   let spanClassName = 'checker-btn';
   let listClassName = 'list-group-item';
@@ -24,6 +24,8 @@ const renderItems = (arr, onSpellClick) => arr.map(({
     listClassName += ' active';
   }
 
+  const description = lang === 'ru' ? shortDescription : shortDescriptionEng;
+
   return (
     <li
       key={shortDescription}
@@ -32,7 +34,7 @@ const renderItems = (arr, onSpellClick) => arr.map(({
       onClick={onSpellClick}
     >
       <span className={spanClassName} />
-      {shortDescription}
+      {description}
     </li>
   );
 });
@@ -40,8 +42,9 @@ const renderItems = (arr, onSpellClick) => arr.map(({
 const SpellListItem = ({
   onSpellClick,
   data,
+  lang,
 }) => {
-  const items = renderItems(data, onSpellClick);
+  const items = renderItems(data, onSpellClick, lang);
 
   return (
     <>
@@ -52,6 +55,7 @@ const SpellListItem = ({
 
 SpellListItem.propTypes = {
   onSpellClick: PropTypes.func.isRequired,
+  lang: PropTypes.string.isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

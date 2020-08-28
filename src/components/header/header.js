@@ -7,14 +7,14 @@ import QuestionList from '../question-list/question-list';
 
 export default class Header extends Component {
   render() {
-    const { filter, score } = this.props;
+    const { filter, score, lang } = this.props;
     return (
       <div className="header d-flex">
         <div className="header-top d-flex">
           <Logo />
-          <Score score={score} />
+          <Score score={score} lang={lang} />
         </div>
-        <QuestionList filter={filter} />
+        <QuestionList filter={filter} lang={lang} />
       </div>
     );
   }
@@ -23,4 +23,5 @@ export default class Header extends Component {
 Header.propTypes = {
   filter: PropTypes.string.isRequired,
   score: PropTypes.number.isRequired,
+  lang: PropTypes.string.isRequired,
 };
