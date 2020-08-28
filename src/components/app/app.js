@@ -27,7 +27,7 @@ export default class App extends Component {
       isStartPage: true,
       lang: 'ru',
       isLoading: true,
-      page: 0,
+      page: 6,
       isMuted: true,
       data: spellData,
       filter: QUESTION_ARRAY[0].name,

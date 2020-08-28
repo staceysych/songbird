@@ -323,7 +323,7 @@ const spellsData = [
       shortDescription: 'Оживление предметов',
       shortDescriptionEng: 'Animates targets',
       descriptionRu: 'Оживляет неодушевленные предметы',
-      descriptionEng: 'Brings animates inanimate targets.',
+      descriptionEng: 'Animates inanimate targets.',
       image: 'https://vignette.wikia.nocookie.net/harrypotter/images/e/e5/Piertotum_Locomotor.gif/revision/latest?cb=20160822060753',
       audio: 'https://raw.githubusercontent.com/staceysych/spell-sounds/master/piertotum%20locomotor.mp3',
     },
