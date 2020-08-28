@@ -46,14 +46,16 @@ const StartPage = ({
       <div className="lang-box">
         <button className="lang-btn ru btn btn-secondary" onClick={onLangClick}>{langText}</button>
       </div>
-      <div className="start-title"><span>{welcomeText}</span></div>
-      <button
-        type="button"
-        className="start-game btn btn-secondary"
-        onClick={onStartGameClick}
-      >
-        {buttonText}
-      </button>
+      <div className="start-title">
+        <span>{welcomeText}</span>
+        <button
+          type="button"
+          className="start-game btn btn-secondary"
+          onClick={onStartGameClick}
+        >
+          {buttonText}
+        </button>
+      </div>
     </div>
   );
 };
