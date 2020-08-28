@@ -36,6 +36,8 @@ export default class QuestionField extends Component {
 
     const player = <Player audioUrl={audio} key="main" isCorrectFound={isCorrectFound} />;
 
+    console.log(`Current spell for cross-check: ${currentSpell.shortDescription} / ${currentSpell.shortDescriptionEng}`);
+
     return (
       <div className="question-field jumbotron rounded d-flex" style={isLoading ? { display: 'none' } : {}}>
         <Poster imageUrl={imageUrl} onImageLoaded={onImageLoaded} />
