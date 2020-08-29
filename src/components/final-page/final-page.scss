@@ -54,6 +54,9 @@
 
   animation: opacityFrame 2s ease-out 1s forwards;
 
+  @include media-laptop-small {
+    font-size: 1.3rem;
+  }
   @include media-mobile {
     font-size: 1rem;
   }
@@ -88,6 +91,8 @@
 }
 
 .final-gif {
+  max-width: 500px;
+
   opacity: 0;
 
   animation: opacityFrame 1s ease-out 1s forwards;
@@ -112,11 +117,14 @@
   transition: all ease-out .3s;
   animation: opacityFrame 1s ease-out 2s forwards, startAgain 2s ease-out infinite alternate 3s forwards;
 
-  @include media-mobile {
-    width: 60%;
+  @include media-laptop-small {
+    width: 70%;
   }
   @include media-tablet {
     width: 70%;
+  }
+  @include media-mobile {
+    width: 60%;
   }
   &:hover {
     background-color: $main-color;
