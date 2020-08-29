@@ -5,6 +5,20 @@ import Player from '../player/player';
 import Poster from '../poster/poster';
 
 export default class QuestionField extends Component {
+  componentDidMount() {
+    const { currentSpell: { shortDescription, shortDescriptionEng } } = this.props;
+
+    console.log(`Current spell for cross-check: ${shortDescription} / ${shortDescriptionEng}`);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.currentSpell !== prevProps.currentSpell) {
+      const { currentSpell: { shortDescription, shortDescriptionEng } } = this.props;
+
+      console.log(`Current spell for cross-check: ${shortDescription} / ${shortDescriptionEng}`);
+    }
+  }
+
   generateHiddenDescription = (spell) => {
     const { lang } = this.props;
     const { shortDescription, shortDescriptionEng } = spell;
@@ -35,8 +49,6 @@ export default class QuestionField extends Component {
     const imageUrl = this.getCurrentSpellImageUrl(image, isCorrectFound);
 
     const player = <Player audioUrl={audio} key="main" isCorrectFound={isCorrectFound} />;
-
-    console.log(`Current spell for cross-check: ${currentSpell.shortDescription} / ${currentSpell.shortDescriptionEng}`);
 
     return (
       <div className="question-field jumbotron rounded d-flex" style={isLoading ? { display: 'none' } : {}}>
