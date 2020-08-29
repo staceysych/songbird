@@ -1,6 +1,7 @@
 .question-link {
   color: $text-color;
   text-decoration: none;
+
   pointer-events: none;
 }
 
@@ -10,6 +11,9 @@
   justify-content: center;
   align-items: center;
   height: 30px;
+
+  font-weight: 300;
+  font-size: .9rem;
 
   background-color: $questionListColor;
   border: none;

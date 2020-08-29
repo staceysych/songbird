@@ -24,6 +24,11 @@
   transition: all ease-out .3s;
 }
 
+.spell-list .list-group-item {
+  font-weight: 300;
+  font-size: 1rem;
+}
+
 .spell-list .list-group-item.active {
   margin: 0;
 
