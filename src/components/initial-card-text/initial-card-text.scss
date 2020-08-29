@@ -53,6 +53,7 @@
   padding: 0;
   padding: 10px;
 
+  font-weight: 300;
   font-size: 16px;
 
   background: $main-color;
@@ -74,8 +75,7 @@
 }
 
 .bubble-text {
-  font-weight: 300;
-  font-size: 1rem;
+  font-size: 1em;
 }
 
 @keyframes bubble {
