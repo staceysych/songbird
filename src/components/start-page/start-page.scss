@@ -32,6 +32,10 @@
   transition: all ease-out 1s;
   animation: titleBox 2s ease-out;
 
+  @include media-laptop-small {
+    font-size: 1.2rem;
+  }
+
   @include media-tablet {
     width: 90%;
 

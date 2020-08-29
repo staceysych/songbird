@@ -30,7 +30,9 @@ const InitialCardText = ({ page, lang }) => {
       <div className="speech-bubble">
         <span className="bubble-text">{text}</span>
       </div>
-      <img src={professorImage} alt="professor" className="professor-image" />
+      <div className="professor-box">
+        <img src={professorImage} alt="professor" className="professor-image" />
+      </div>
     </div>
   );
 };

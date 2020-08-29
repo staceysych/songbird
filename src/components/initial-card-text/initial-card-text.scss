@@ -1,46 +1,34 @@
-.professor-image {
+.professor-box {
   position: absolute;
   left: 251px;
+  left: calc(100% - 250px);
 
+  width: 140px;
   height: 100%;
 
-  animation: professor 1s ease-out forwards, professorMedia 1s ease-out forwards;
+  animation: professor 1s ease-out forwards;
 
-  @include media-laptop {
-    left: 235px;
-  }
   @include media-laptop-small {
-    left: 190px;
+    left: calc(100% - 225px);
   }
-  @include media-tablet-big {
-    left: 220px;
+  @include media-mobile {
+    left: calc(100% - 145px);
   }
-  @include media-tablet {
-    left: 240px;
-  }
-  @media (max-width:562px) {
-    left: 140px;
-    @keyframes professorMedia {
-      0% {
-        width: 0;
-        height: 0;
-      }
-      100% {
-        width: 55%;
-        height: 60%;
-      }
-    }
-  }
+}
+
+.professor-image {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
 }
 
 @keyframes professor {
   0% {
-    width: 0;
-    height: 0;
+    transform: scale(0);
   }
   100% {
-    width: 55%;
-    height: 100%;
+    transform: scale(1);
   }
 }
 
@@ -49,6 +37,7 @@
 
   display: flex;
   height: 100%;
+
   @include media-tablet-big {
     height: 300px;
     margin-top: 30px;
@@ -66,23 +55,20 @@
 
   font-size: 16px;
 
-  @include media-laptop-small {
-    font-size: 14px;
-  }
-
   background: $main-color;
   border-radius: .4em;
   transform: scale(0);
 
   animation: bubble 1s ease-out 1s forwards;
 
-  /* @include media-laptop-small {
-    font-size: .8rem;
-  } */
+  @include media-laptop-small {
+    font-size: 14px;
+  }
   @include media-mobile {
     width: 55%;
     height: 80%;
     padding: 5px;
+
     font-size: 12px;
   }
 }
