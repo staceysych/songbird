@@ -27,7 +27,9 @@ const InitialCardText = ({ page, lang }) => {
 
   return (
     <div className="card-text">
-      <span className="speech-bubble">{text}</span>
+      <div className="speech-bubble">
+        <span className="bubble-text">{text}</span>
+      </div>
       <img src={professorImage} alt="professor" className="professor-image" />
     </div>
   );
